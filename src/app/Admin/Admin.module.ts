@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductComponent } from './dashboard/component/product/product.component';
 import { CategoryComponent } from './dashboard/component/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxPaginationModule } from 'ngx-pagination';
+// import { NgxPaginationModule } from 'ngx-pagination';
 import { LoginComponent } from './dashboard/account/login/login.component';
 import { RegisterComponent } from './dashboard/account/register/register.component';
 import { LogoutComponent } from './dashboard/account/logout/logout.component';
@@ -68,7 +68,7 @@ const router_home:Routes=[
     CommonModule,
     SharedModule,
     HttpClientModule,
-    NgxPaginationModule,
+    // NgxPaginationModule,
     RouterModule.forChild(router_home)
   ],
 })

@@ -2,8 +2,8 @@ import { environment } from './../../../environments/environment.prod';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +11,44 @@ import { Observable } from 'rxjs';
 export class ApiService {
   private API_URL = 'http://127.0.0.1:8000/api/';
   // public host = environment.BASE_API;
+
+
+  public code_tokens = `Bearer ${localStorage.getItem('profanis_auth')}`;
+
+  private _islog = new BehaviorSubject<boolean>(false);
+  public readonly TOKEN_NAME = 'profanis_auth';
+  islog = this._islog.asObservable();
+  get token() {
+    return localStorage.getItem(this.TOKEN_NAME)!;
+  }
   constructor(private _http: HttpClient, public router: Router) {
 
+    //
+    this._islog.next(!!this.token);
+  }
+
+  // login(data: any): Observable<any> {
+  //   return this._http.post<any>(this.API_URL + 'login', data);
+  // }
+  // getalluser(): Observable<any> {
+  //   return this._http.get<any>(this.API_URL + 'user/', {
+  //     headers: {
+  //       Authorization: this.code_tokens
+  //     }
+  //   });
+  // }
+
+  login(data: any) {
+    return this._http.post<any>(this.API_URL + 'login', data).pipe(
+      tap((respose: any) => {
+        console.log('vao');
+        this._islog.next(true);
+        localStorage.setItem(this.TOKEN_NAME, respose.access_token);
+
+        console.log(respose.access_token);
+        console.log(this.TOKEN_NAME, respose.access_token);
+      })
+    );
   }
   getalldashboard(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'get_product');
@@ -21,7 +57,6 @@ export class ApiService {
   get_detail(id: number): Observable<any> {
     return this._http.get<any>(this.API_URL + 'get_product/' + id);
   }
-
 
   // giỏ hàng
   // addToCart(product: Product) {
@@ -36,35 +71,37 @@ export class ApiService {
   //   }
   // }
 
-
-
   // category-product
   getallcategory_product(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'category_product/');
   }
-  create_category_product(data:any): Observable<any> {
-    return this._http.post<any>(this.API_URL + 'category_product/',data,)
+  create_category_product(data: any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'category_product/', data);
   }
   get_category(id: number): Observable<any> {
-    return this._http.get<any>(this.API_URL + 'category_product/' + id
-    // , {
-    //   headers: {
-    //     Authorization: this.code_tokens
-    //   }
-    // }
-    )
+    return this._http.get<any>(
+      this.API_URL + 'category_product/' + id
+      // , {
+      //   headers: {
+      //     Authorization: this.code_tokens
+      //   }
+      // }
+    );
   }
   update_category(id: number, data: any): Observable<any> {
-    return this._http.put<any>(this.API_URL + 'category_product/' + id, data
-    // , {
-    //   headers: {
-    //     Authorization: this.code_tokens
-    //   }
-    // }
+    return this._http.put<any>(
+      this.API_URL + 'category_product/' + id,
+      data
+      // , {
+      //   headers: {
+      //     Authorization: this.code_tokens
+      //   }
+      // }
     );
   }
   delete_category(id: number): Observable<any> {
-    return this._http.delete<any>(this.API_URL + 'category_product/' + id
+    return this._http.delete<any>(
+      this.API_URL + 'category_product/' + id
       // ,
       // {
       //   headers: {

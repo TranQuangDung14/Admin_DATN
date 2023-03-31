@@ -24,6 +24,7 @@ export class CategoryComponent implements OnInit {
     .subscribe((data:any)=>{
       console.log('category_product',data.category_product);
       console.log('supplier',data.supplier);
+      console.log('category',data.category)
       this.category_product=data.category_product;
       this.supplier=data.supplier;
     },error =>{
