@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './dashboard/account/login/login.component';
 import { RegisterComponent } from './dashboard/account/register/register.component';
 import { LogoutComponent } from './dashboard/account/logout/logout.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuardGuard } from '../core/guards/auth-guard.guard';
 
 const router_home:Routes=[
   {
@@ -20,14 +22,17 @@ const router_home:Routes=[
     {
       path:"dashboard",
       component:IndexComponent,
+      canActivate: [AuthGuardGuard],
     },
     {
       path:"product",
       component:ProductComponent,
+      canActivate: [AuthGuardGuard],
     },
     {
       path:"category",
       component:CategoryComponent,
+      canActivate: [AuthGuardGuard],
     },
 
     // {
@@ -68,6 +73,7 @@ const router_home:Routes=[
     CommonModule,
     SharedModule,
     HttpClientModule,
+    ReactiveFormsModule,
     // NgxPaginationModule,
     RouterModule.forChild(router_home)
   ],

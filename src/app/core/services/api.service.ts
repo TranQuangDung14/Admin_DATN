@@ -73,41 +73,49 @@ export class ApiService {
 
   // category-product
   getallcategory_product(): Observable<any> {
-    return this._http.get<any>(this.API_URL + 'category_product/');
+    return this._http.get<any>(this.API_URL + 'category_product/', {
+      headers: {
+        Authorization: this.code_tokens
+      }
+    });
   }
   create_category_product(data: any): Observable<any> {
-    return this._http.post<any>(this.API_URL + 'category_product/', data);
+    return this._http.post<any>(this.API_URL + 'category_product/', data, {
+      headers: {
+        Authorization: this.code_tokens
+      }
+    });
   }
   get_category(id: number): Observable<any> {
     return this._http.get<any>(
       this.API_URL + 'category_product/' + id
-      // , {
-      //   headers: {
-      //     Authorization: this.code_tokens
-      //   }
-      // }
+      , {
+        headers: {
+          Authorization: this.code_tokens
+        }
+      }
     );
   }
   update_category(id: number, data: any): Observable<any> {
     return this._http.put<any>(
       this.API_URL + 'category_product/' + id,
       data
-      // , {
-      //   headers: {
-      //     Authorization: this.code_tokens
-      //   }
-      // }
+      , {
+        headers: {
+          Authorization: this.code_tokens
+        }
+      }
     );
   }
   delete_category(id: number): Observable<any> {
     return this._http.delete<any>(
       this.API_URL + 'category_product/' + id
-      // ,
-      // {
-      //   headers: {
-      //     Authorization: this.code_tokens
-      //   }
-      // }
+      ,
+      {
+        headers: {
+          Authorization: this.code_tokens
+        }
+      }
     );
   }
 }
