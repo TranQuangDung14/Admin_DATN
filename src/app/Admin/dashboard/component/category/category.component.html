@@ -25,8 +25,9 @@
                 <td>{{cate.name_supplier}}</td>
                 <td>{{cate.name_status}}</td>
                 <td>
-                  <a class="btn btn-secondary" style="margin-right: 10px ;" [routerLink]="['/admin/category-edit/',cate.id]">Sửa</a>
-                  <button type="button" class="btn btn-danger"(click)="onDelete(cate.id)">Xóa</button>
+                  <a class="btn btn-secondary" style="margin-right: 10px ;"
+                    [routerLink]="['/admin/category-edit/',cate.id]">Sửa</a>
+                  <button type="button" class="btn btn-danger" (click)="onDelete(cate.id)">Xóa</button>
                 </td>
               </tr>
             </tbody>
@@ -36,3 +37,4 @@
     </div>
   </div>
 </div>
+
