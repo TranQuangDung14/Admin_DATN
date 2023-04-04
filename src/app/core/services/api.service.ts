@@ -50,6 +50,18 @@ export class ApiService {
       })
     );
   }
+  logout(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'logout', {
+      headers: {
+        Authorization: this.code_tokens
+      }
+    });
+  }
+  register(data:any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'register',data);
+  }
+
+
   getalldashboard(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'get_product');
   }

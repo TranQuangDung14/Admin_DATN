@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../core/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   name_task :any;
-  constructor() { }
+  constructor(private admin :ApiService,private router: Router) { }
 
   ngOnInit() {
+  }
+  onlogout(){
+    this.admin.logout().subscribe(data=>{
+      localStorage.removeItem('profanis_auth');
+      this.router.navigate(['/login']);
+    });
+    //
   }
 
 }

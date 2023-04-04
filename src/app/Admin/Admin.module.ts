@@ -18,6 +18,7 @@ const router_home:Routes=[
   {
   path:"",
   component: DashboardComponent,
+  canActivate: [AuthGuardGuard],
   children:[
     {
       path:"dashboard",
@@ -47,10 +48,10 @@ const router_home:Routes=[
   path:"login",
   component:LoginComponent,
 },
-{
-  path:"logout",
-  component:LogoutComponent,
-},
+// {
+//   path:"logout",
+//   component:LogoutComponent,
+// },
 {
   path:"register",
   component:RegisterComponent,
