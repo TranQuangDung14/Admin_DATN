@@ -12,6 +12,7 @@ export class AuthGuardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.admin.islog.pipe(
+        // kiểm tra xem đã đăng nhập hay chưa
         tap((isLoggedIn:any)=>{
           if(!isLoggedIn){
             alert("bạn cần đăng nhập để vào page này");

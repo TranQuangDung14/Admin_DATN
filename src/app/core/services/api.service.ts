@@ -26,7 +26,11 @@ export class ApiService {
     //
     this._islog.next(!!this.token);
   }
-
+  // hàm kiểm tra
+  isLoggedIn() {
+    const token = localStorage.getItem('profanis_auth');
+    return token !== null;
+  }
   // login(data: any): Observable<any> {
   //   return this._http.post<any>(this.API_URL + 'login', data);
   // }

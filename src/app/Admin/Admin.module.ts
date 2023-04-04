@@ -13,6 +13,7 @@ import { RegisterComponent } from './dashboard/account/register/register.compone
 import { LogoutComponent } from './dashboard/account/logout/logout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardGuard } from '../core/guards/auth-guard.guard';
+import { BlockPageLoginGuard } from '../core/guards/block-page-login.guard';
 
 const router_home:Routes=[
   {
@@ -47,6 +48,7 @@ const router_home:Routes=[
 {
   path:"login",
   component:LoginComponent,
+  canActivate: [BlockPageLoginGuard],
 },
 // {
 //   path:"logout",
