@@ -14,6 +14,10 @@ import { LogoutComponent } from './dashboard/account/logout/logout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardGuard } from '../core/guards/auth-guard.guard';
 import { BlockPageLoginGuard } from '../core/guards/block-page-login.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const router_home:Routes=[
   {
@@ -77,6 +81,10 @@ const router_home:Routes=[
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule,
     // NgxPaginationModule,
     RouterModule.forChild(router_home)
   ],
