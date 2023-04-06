@@ -12,7 +12,6 @@ export class ApiService {
   private API_URL = 'http://127.0.0.1:8000/api/';
   // public host = environment.BASE_API;
 
-
   public code_tokens = `Bearer ${localStorage.getItem('profanis_auth')}`;
 
   private _islog = new BehaviorSubject<boolean>(false);
@@ -22,7 +21,6 @@ export class ApiService {
     return localStorage.getItem(this.TOKEN_NAME)!;
   }
   constructor(private _http: HttpClient, public router: Router) {
-
     //
     this._islog.next(!!this.token);
   }
@@ -57,14 +55,13 @@ export class ApiService {
   logout(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'logout', {
       headers: {
-        Authorization: this.code_tokens
-      }
+        Authorization: this.code_tokens,
+      },
     });
   }
-  register(data:any): Observable<any> {
-    return this._http.post<any>(this.API_URL + 'register',data);
+  register(data: any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'register', data);
   }
-
 
   getalldashboard(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'get_product');
@@ -91,47 +88,37 @@ export class ApiService {
   getallcategory_product(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'category_product/', {
       headers: {
-        Authorization: this.code_tokens
-      }
+        Authorization: this.code_tokens,
+      },
     });
   }
+  // thêm mới danh mục
   create_category_product(data: any): Observable<any> {
     return this._http.post<any>(this.API_URL + 'category_product/', data, {
       headers: {
-        Authorization: this.code_tokens
-      }
+        Authorization: this.code_tokens,
+      },
     });
   }
   get_category(id: number): Observable<any> {
-    return this._http.get<any>(
-      this.API_URL + 'category_product/' + id
-      , {
-        headers: {
-          Authorization: this.code_tokens
-        }
-      }
-    );
+    return this._http.get<any>(this.API_URL + 'category_product/' + id, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
   }
   update_category(id: number, data: any): Observable<any> {
-    return this._http.put<any>(
-      this.API_URL + 'category_product/' + id,
-      data
-      , {
-        headers: {
-          Authorization: this.code_tokens
-        }
-      }
-    );
+    return this._http.put<any>(this.API_URL + 'category_product/' + id, data, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
   }
   delete_category(id: number): Observable<any> {
-    return this._http.delete<any>(
-      this.API_URL + 'category_product/' + id
-      ,
-      {
-        headers: {
-          Authorization: this.code_tokens
-        }
-      }
-    );
+    return this._http.delete<any>(this.API_URL + 'category_product/' + id, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
   }
 }

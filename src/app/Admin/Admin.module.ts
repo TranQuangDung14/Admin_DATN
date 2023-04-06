@@ -10,11 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 // import { NgxPaginationModule } from 'ngx-pagination';
 import { LoginComponent } from './dashboard/account/login/login.component';
 import { RegisterComponent } from './dashboard/account/register/register.component';
-import { LogoutComponent } from './dashboard/account/logout/logout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardGuard } from '../core/guards/auth-guard.guard';
 import { BlockPageLoginGuard } from '../core/guards/block-page-login.guard';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -73,7 +72,6 @@ const router_home:Routes=[
     CategoryComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent,
 
   ],
   imports: [
@@ -81,7 +79,7 @@ const router_home:Routes=[
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,

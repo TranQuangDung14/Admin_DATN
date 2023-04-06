@@ -6,31 +6,45 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
-  private subcription :Subscription;
-  category_product :any;
+  private subcription: Subscription;
+  category_product: any;
   supplier: any;
 
-  constructor(private admin :ApiService) { }
+  constructor(private admin: ApiService) {}
+
+  category_product_fromCreate: FormGroup = new FormGroup({
+    // id: new FormControl(),
+    name: new FormControl('', Validators.required),
+    product_supplier_id: new FormControl('', Validators.required),
+  });
 
   ngOnInit() {
     this.get_all_category_product();
   }
 
-  get_all_category_product(){
-    this.subcription = this.admin.getallcategory_product()
-    .subscribe((data:any)=>{
-      console.log('category_product',data.category_product);
-      console.log('supplier',data.supplier);
-      console.log('category',data.category)
-      this.category_product=data.category_product;
-      this.supplier=data.supplier;
-    },error =>{
-      console.log(error);
-
-    }
-    )
+  get_all_category_product() {
+    this.subcription = this.admin.getallcategory_product().subscribe(
+      (data: any) => {
+        console.log('category_product', data.category_product);
+        console.log('supplier', data.supplier);
+        console.log('category', data.category);
+        this.category_product = data.category_product;
+        this.supplier = data.supplier;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  onCreate() {
+    // this.submitted=true;
+    this.admin.create_category_product(this.category_product_fromCreate.value).subscribe((data) => {
+        this.category_product_fromCreate.reset();
+        console.log(data);
+        this.get_all_category_product();
+      });
   }
 }
