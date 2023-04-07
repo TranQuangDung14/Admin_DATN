@@ -4,19 +4,26 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './dashboard/component/index/index.component';
 import { SharedModule } from '../shared/shared.module';
-import { ProductComponent } from './dashboard/component/product/product.component';
 import { CategoryComponent } from './dashboard/component/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 // import { NgxPaginationModule } from 'ngx-pagination';
 import { LoginComponent } from './dashboard/account/login/login.component';
 import { RegisterComponent } from './dashboard/account/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardGuard } from '../core/guards/auth-guard.guard';
 import { BlockPageLoginGuard } from '../core/guards/block-page-login.guard';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SupplierComponent } from './dashboard/component/supplier/supplier.component';
+import { Product_listComponent } from './dashboard/component/product/product_list/product_list.component';
+import { WarehouseComponent } from './dashboard/component/warehouse/warehouse.component';
+import { OrderComponent } from './dashboard/component/order/order.component';
+import { OrderHistoryComponent } from './dashboard/component/order-history/order-history.component';
+import { TransportComponent } from './dashboard/component/transport/transport.component';
 
 const router_home:Routes=[
   {
@@ -31,12 +38,37 @@ const router_home:Routes=[
     },
     {
       path:"product",
-      component:ProductComponent,
+      component:Product_listComponent,
       canActivate: [AuthGuardGuard],
     },
     {
       path:"category",
       component:CategoryComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"supplier",
+      component:SupplierComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"warehouse",
+      component:WarehouseComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"order",
+      component:OrderComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"order-history",
+      component:OrderHistoryComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"transport",
+      component:TransportComponent,
       canActivate: [AuthGuardGuard],
     },
 
@@ -53,10 +85,6 @@ const router_home:Routes=[
   component:LoginComponent,
   canActivate: [BlockPageLoginGuard],
 },
-// {
-//   path:"logout",
-//   component:LogoutComponent,
-// },
 {
   path:"register",
   component:RegisterComponent,
@@ -65,13 +93,18 @@ const router_home:Routes=[
 @NgModule({
 
   declarations: [
-    // LogoutComponent,
     DashboardComponent,
     IndexComponent,
-    ProductComponent,
+    Product_listComponent,
     CategoryComponent,
+    SupplierComponent,
     LoginComponent,
     RegisterComponent,
+    WarehouseComponent,
+    OrderComponent,
+    OrderHistoryComponent,
+    TransportComponent,
+
 
 
   ],
@@ -80,11 +113,13 @@ const router_home:Routes=[
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
-
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
     // BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
+    FormsModule,
     // NgxPaginationModule,
     RouterModule.forChild(router_home)
   ],

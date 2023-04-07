@@ -14,14 +14,24 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
-  private subcription: Subscription;
+  private subscription: Subscription;
   // Mục khai báo biến
   category_product: any;
   supplier: any;
   title='Danh mục sản phẩm';
   categoryId :any;
-  id:any;
-  isEdit: boolean = true;
+  id: number;
+  // isEdit: boolean = true;
+  searchText:any;
+
+  //phân trang
+  // POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [5, 10, 15, 20];
+  //end
+
 
   constructor(
     private admin: ApiService,
@@ -41,15 +51,6 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     this.get_all_category_product();
     this.send_title();
-    // this.id = this._router.snapshot.params['id'];
-    // this.admin.get_category(this.id).subscribe(data => {
-    //   console.log('1',data)
-    //   // this.submitted = false;
-    //   this.category_product_from = new FormGroup({
-    //     name: new FormControl(data.name,Validators.required),
-    //     product_supplier_id: new FormControl(data.product_supplier_id),
-    //   });
-    // })
   }
 
   // gửi title đi
@@ -59,11 +60,11 @@ export class CategoryComponent implements OnInit {
   }
 
   get_all_category_product() {
-    this.subcription = this.admin.getallcategory_product().subscribe(
+    this.subscription = this.admin.getallcategory_product().subscribe(
       (data: any) => {
         // console.log('category_product', data.category_product);
-        console.log('supplier', data.supplier);
-        console.log('category', data.category);
+        // console.log('supplier', data.supplier);
+        // console.log('category', data.category);
         this.category_product = data.category_product;
         this.supplier = data.supplier;
       },
@@ -82,39 +83,34 @@ export class CategoryComponent implements OnInit {
         this.get_all_category_product();
         this.toastr.success('Thêm mới thành công!', );
 
-        window.location.reload();
+        // window.location.reload();
       });
   }
-  // resetForm() {
-  //   this.category_product_from.reset();
-  // }
-  // get_id(id: number) {
-  //   this.admin.get_category(id).subscribe(data => {
-  //     console.log('1',data);
-  //     this.category_product_from.setValue({
-  //       name: data.name,
-  //       product_supplier_id: data.product_supplier_id
-  //     });
-  //     this.isEdit = true; // Xác định là chức năng sửa
-  //   });
-  // }
+  resetForm() {
+    this.category_product_from.reset();
+  }
   get_id(id: number)
   {
       //  this.id = this._router.snapshot.params['id'];
+      this.id =id;
     this.admin.get_category(id).subscribe(data => {
-      console.log('1',data)
+      // console.log('1',data)
       this.category_product_from = new FormGroup({
         name: new FormControl(data.name,Validators.required),
         product_supplier_id: new FormControl(data.product_supplier_id),
       });
-      this.isEdit = true; // Xác định là chức năng sửa
+      // this.isEdit = true; // Xác định là chức năng sửa
     })
   }
+
   onEdit() {
 
     this.admin.update_category(this.id, this.category_product_from.value).subscribe(data => {
       this.router.navigate(['/category']);
-
+      this.category_product_from.reset();
+      // console.log(data);
+      this.get_all_category_product();
+      this.toastr.success('Cập nhật thành công!', );
     });
   }
 
@@ -122,6 +118,9 @@ export class CategoryComponent implements OnInit {
     this.admin.delete_category(id).subscribe((data) => {
       this.get_all_category_product();
       this.toastr.success('Xóa thành công!', );
+    },
+    (error) => {
+      this.toastr.error('Xóa thất bại!');
     });
   }
 
@@ -130,5 +129,14 @@ export class CategoryComponent implements OnInit {
     this.title = 'Bạn có chắc chắn muốn xóa?'; // hiển thị thông báo xác nhận
   }
 
-
+    //phân trang
+    ontableDataChange(event: any) {
+      this.page = event;
+      this.get_all_category_product();
+    }
+    ontableSizeChange(event: any): void {
+      this.tableSize = event.target.value;
+      this.page = 1;
+      this.get_all_category_product();
+    }
 }

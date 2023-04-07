@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-  name_task: any;
+  // name_task: any;
   constructor(
     private admin: ApiService,
     private router: Router,

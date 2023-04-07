@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.data_service.currentMessage.subscribe(title => {
       this.title = title;
-      console.log('tile',this.title);
+      // console.log('tile',this.title);
     });
   }
 
