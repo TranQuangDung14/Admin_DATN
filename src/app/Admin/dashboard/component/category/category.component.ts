@@ -15,11 +15,11 @@ export class CategoryComponent implements OnInit {
 
   constructor(private admin: ApiService) {}
 
-  category_product_fromCreate: FormGroup = new FormGroup({
-    // id: new FormControl(),
-    name: new FormControl('', Validators.required),
-    product_supplier_id: new FormControl('', Validators.required),
-  });
+  // category_product_fromCreate: FormGroup = new FormGroup({
+  //   // id: new FormControl(),
+  //   name: new FormControl('', Validators.required),
+  //   product_supplier_id: new FormControl('', Validators.required),
+  // });
 
   ngOnInit() {
     this.get_all_category_product();
@@ -39,12 +39,12 @@ export class CategoryComponent implements OnInit {
       }
     );
   }
-  onCreate() {
-    // this.submitted=true;
-    this.admin.create_category_product(this.category_product_fromCreate.value).subscribe((data) => {
-        this.category_product_fromCreate.reset();
-        console.log(data);
-        this.get_all_category_product();
-      });
-  }
+  // onCreate() {
+  //   // this.submitted=true;
+  //   this.admin.create_category_product(this.category_product_fromCreate.value).subscribe((data) => {
+  //       this.category_product_fromCreate.reset();
+  //       console.log(data);
+  //       this.get_all_category_product();
+  //     });
+  // }
 }
