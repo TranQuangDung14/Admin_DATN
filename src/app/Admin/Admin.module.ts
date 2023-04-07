@@ -73,12 +73,14 @@ const router_home:Routes=[
     LoginComponent,
     RegisterComponent,
 
+
   ],
   imports: [
     CommonModule,
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
+
     // BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,

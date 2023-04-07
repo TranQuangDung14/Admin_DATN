@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
             this.toastr.error('Tạo tài khoản thất bại!');
           }
         } else {
-          this.toastr.error('Lỗi server, vui lòng thử lại sau1!');
+          this.toastr.error('Lỗi server, vui lòng thử lại sau!','api chưa chạy');
         }
       }
     );
