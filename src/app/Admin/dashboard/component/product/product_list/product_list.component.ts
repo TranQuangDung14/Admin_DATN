@@ -63,6 +63,21 @@ export class Product_listComponent implements OnInit {
         )
     }
 
+    onDelete(id: number) {
+      this.admin.delete_product(id).subscribe((data) => {
+        this.get_all_product();
+        this.toastr.success('Xóa thành công!', );
+      },
+      (error) => {
+        this.toastr.error('Xóa thất bại!');
+      });
+    }
+
+    openModal(id: number): void {
+      this.id = id; // lưu lại id vào một biến trong component
+      this.title = 'Bạn có chắc chắn muốn xóa?'; // hiển thị thông báo xác nhận
+    }
+
 
     //phân trang
     ontableDataChange(event: any) {

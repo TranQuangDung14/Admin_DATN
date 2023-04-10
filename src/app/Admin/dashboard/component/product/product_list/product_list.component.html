@@ -5,22 +5,18 @@
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
           <div class="col-6">
             <h6 class="text-white text-capitalize ps-3">Sản phẩm</h6>
-
           </div>
           <div class="col-6 ">
                 <div class="d-flex">
                   <div class="flex-grow-1 me-2">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"placeholder=" Tìm kiếm sản phẩm">
                   </div>
-                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
-                  data-bs-target="#modal_add">
-                  Thêm mới
-                </button>
+                  <a routerLink="/product-add">
+                    <button type="button" class="btn btn-success float-end">
+                     Thêm mới
+                  </button></a>
                 </div>
-
-
           </div>
-
         </div>
       </div>
       <div class="card-body px-0 pb-2">
@@ -46,11 +42,12 @@
                 <td>{{item.name_cate}}</td>
                 <td>{{item.amount}}</td>
                 <td>
-                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
+                  <a [routerLink]="['/product-edit/',item.id]">
+                  <button type="button" class="btn btn-secondary me-2"
                     data-bs-target="#modal_edit">
                     Sửa
                   </button>
-
+                </a>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
                     (click)="openModal(item.id)">
                     Xóa
@@ -83,7 +80,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
         <!-- <button type="button" class="btn btn-danger" (click)="onDelete(id)">Xóa</button> -->
-        <!-- <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(id)">Xóa</button> -->
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(id)">Xóa</button>
 
 
       </div>

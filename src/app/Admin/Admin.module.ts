@@ -24,6 +24,8 @@ import { WarehouseComponent } from './dashboard/component/warehouse/warehouse.co
 import { OrderComponent } from './dashboard/component/order/order.component';
 import { OrderHistoryComponent } from './dashboard/component/order-history/order-history.component';
 import { TransportComponent } from './dashboard/component/transport/transport.component';
+import { Product_addComponent } from './dashboard/component/product/product_add/product_add.component';
+import { Product_editComponent } from './dashboard/component/product/product_edit/product_edit.component';
 
 const router_home:Routes=[
   {
@@ -39,6 +41,16 @@ const router_home:Routes=[
     {
       path:"product",
       component:Product_listComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"product-add",
+      component:Product_addComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"product-edit/:id",
+      component:Product_editComponent,
       canActivate: [AuthGuardGuard],
     },
     {
@@ -96,6 +108,8 @@ const router_home:Routes=[
     DashboardComponent,
     IndexComponent,
     Product_listComponent,
+    Product_addComponent,
+    Product_editComponent,
     CategoryComponent,
     SupplierComponent,
     LoginComponent,
@@ -104,6 +118,7 @@ const router_home:Routes=[
     OrderComponent,
     OrderHistoryComponent,
     TransportComponent,
+
 
 
 
