@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CategoryComponent } from './Admin/dashboard/component/category/category.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { CurrencyPipe } from '@angular/common';
+// import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { CategoryComponent } from './Admin/dashboard/component/category/category
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CKEditorModule,
+    CurrencyPipe,
     // BrowserAnimationsModule,
     // CommonModule
     // SharedModule,

@@ -26,6 +26,8 @@ import { OrderHistoryComponent } from './dashboard/component/order-history/order
 import { TransportComponent } from './dashboard/component/transport/transport.component';
 import { Product_addComponent } from './dashboard/component/product/product_add/product_add.component';
 import { Product_editComponent } from './dashboard/component/product/product_edit/product_edit.component';
+// import { CKEditorModule } from 'ckeditor4-angular';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 const router_home:Routes=[
   {
@@ -130,6 +132,10 @@ const router_home:Routes=[
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    CKEditorModule,
+    // ClassicEditor,
+    // CKEditorModule,
+    // CKEditorModule,
     // BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
