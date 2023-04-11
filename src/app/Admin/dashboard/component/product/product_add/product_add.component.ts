@@ -76,26 +76,6 @@ export class Product_addComponent implements OnInit {
   //   }
   // }
 
-  // onFileSelected(event:any) {
-  //   if (event.target.files.length > 0) {
-  //     for (let i = 0; i < event.target.files.length; i++) {
-  //       const reader = new FileReader(); // tạo mới đối tượng FileReader
-  //       const file = event.target.files[i]; // lấy file được chọn
-  //       reader.readAsDataURL(file); // đọc file dưới dạng URL
-  //       reader.onload = () => { // xử lý khi đã đọc xong file
-  //         const result = reader.result as string; // chuyển đổi kết quả đọc file về dạng chuỗi
-  //         // hiển thị ảnh trước khi tải lên
-  //         const image = document.createElement('img');
-  //         image.src = result;
-  //         image.width = 150; // đặt chiều rộng của ảnh
-  //         document.getElementById('preview')!.appendChild(image); // thêm ảnh vào thẻ div có id là 'preview'
-  //       };
-  //       this.imageFiles.push(file);
-  //     }
-  //   }
-  // }
-
-
   onFileSelected(event:any) {
     if (event.target.files.length > 0) {
         for (let i = 0; i < event.target.files.length; i++) {
@@ -124,8 +104,4 @@ export class Product_addComponent implements OnInit {
         }
     }
 }
-
-
-
-
 }

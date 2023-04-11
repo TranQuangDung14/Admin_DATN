@@ -29,7 +29,7 @@
             <div class="row mt-2">
               <div class="col-6 form-group">
                 <h6 for="default_price">Giá tiền sản phẩm</h6>
-                <input type="number" class="form-control" formControlName="default_price" >
+                <input type="number" class="form-control" min="0" formControlName="default_price" >
               </div>
               <!-- <div class="col-6 form-group">
                 <h6 for="image">Ảnh sản phẩm</h6>
@@ -61,7 +61,7 @@
               <ckeditor class="form-control" formControlName="description"></ckeditor>
             </div>
 
-            <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="submit" class="btn btn-primary ">Lưu</button>
           </form>
         </div>
       </div>
