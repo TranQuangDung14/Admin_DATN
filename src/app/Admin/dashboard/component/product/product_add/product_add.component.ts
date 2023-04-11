@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../../../../core/services/api.service';
 
@@ -15,7 +17,9 @@ export class Product_addComponent implements OnInit {
   category_product :any;
   constructor(
     private formBuilder: FormBuilder,
-    private admin: ApiService
+    private admin: ApiService,
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -58,11 +62,14 @@ export class Product_addComponent implements OnInit {
 
     this.admin.create_product(formData).subscribe(
       res => {
-        console.log(res);
+        this.router.navigate(['/product']);
+        this.toastr.success('Thêm mới thành công!', );
+        // console.log(res);
         // do something with the response
       },
       error => {
         console.log(error);
+        this.toastr.error('Thêm mới thất bại kiểm tra lại!', );
         // do something with the error
       }
     );
@@ -96,6 +103,7 @@ export class Product_addComponent implements OnInit {
                 deleteButton.innerHTML = 'X';
                 deleteButton.onclick = () => {
                     previewDiv.removeChild(image); // xóa ảnh khỏi thẻ div
+                    previewDiv.removeChild(deleteButton); // xóa nút x
                     this.imageFiles.splice(this.imageFiles.indexOf(file), 1); // xóa file khỏi mảng
                 };
                 previewDiv.appendChild(deleteButton); // thêm nút X vào thẻ div
