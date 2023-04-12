@@ -30,7 +30,7 @@ export class Product_addComponent implements OnInit {
       tech_specs: [''],
       category_id: [''],
       description: [''],
-      image: [null]
+      // image: [null]
     });
 
     this.get_all_product();

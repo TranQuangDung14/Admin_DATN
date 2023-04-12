@@ -17,6 +17,7 @@ export class Product_editComponent implements OnInit {
   category_product :any;
   product:any;
   id:number=0;
+  images:any;
   constructor(
     private formBuilder: FormBuilder,
     private admin: ApiService,
@@ -33,7 +34,7 @@ export class Product_editComponent implements OnInit {
       tech_specs: [''],
       category_id: [''],
       description: [''],
-      image: [null]
+      // image: [null]
     });
 
     this.get_all_product();
@@ -42,8 +43,9 @@ export class Product_editComponent implements OnInit {
     // get_product_details() {
       this.subscription = this.admin.get_product(this.id)
         .subscribe((data: any) => {
-          // this.productForm.patchValue(data.product);
+          this.productForm.patchValue(data.product); // đưa data vào form
           this.product=data.product;
+          this.images=data.images;
           console.log('data',data);
         }, error => {
           console.log(error);
@@ -69,7 +71,7 @@ export class Product_editComponent implements OnInit {
     formData.append('tech_specs', this.productForm.value.tech_specs);
     formData.append('category_id', this.productForm.value.category_id);
     formData.append('description', this.productForm.value.description);
-
+    // console.log('name',formData);
     if (this.imageFiles && this.imageFiles.length > 0) {
       for (let i = 0; i < this.imageFiles.length; i++) {
         formData.append(`image[${i}]`, this.imageFiles[i]);
@@ -83,7 +85,7 @@ export class Product_editComponent implements OnInit {
         this.router.navigate(['/product']); // navigate to products page after successful update
       },
       error => {
-        console.log(error);
+        console.log('lỗi đấy',error);
         // do something with the error
       }
     );
