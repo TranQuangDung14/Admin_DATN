@@ -9,15 +9,17 @@
             </div>
           </div>
         </div>
-        <!-- <div class="card-header">Add Product</div> -->
         <div class="card-body">
           <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-6 form-group">
                 <h6 for="category_id">Danh mục sản phẩm</h6>
-                <select class="form-select" formControlName="category_id">
+                <!-- <select class="form-select" formControlName="category_id">
                   <option value="">-- Chọn danh mục sản phẩm--</option>
                   <option *ngFor="let item of category_product" value="{{ item.id }}">{{ item.name_cate }}</option>
+                </select> -->
+                <select class="form-control" formControlName="category_id">
+                  <option *ngFor="let category of category_product" [value]="category.id">{{ category.name_cate }}</option>
                 </select>
               </div>
               <div class="col-6 form-group">

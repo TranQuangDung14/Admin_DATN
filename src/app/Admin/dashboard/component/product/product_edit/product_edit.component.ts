@@ -15,6 +15,7 @@ export class Product_editComponent implements OnInit {
   productForm: FormGroup;
   imageFiles: File[] = [];
   category_product :any;
+  product:any;
   id:number=0;
   constructor(
     private formBuilder: FormBuilder,
@@ -36,15 +37,20 @@ export class Product_editComponent implements OnInit {
     });
 
     this.get_all_product();
+
+
+    // get_product_details() {
+      this.subscription = this.admin.get_product(this.id)
+        .subscribe((data: any) => {
+          // this.productForm.patchValue(data.product);
+          this.product=data.product;
+          console.log('data',data);
+        }, error => {
+          console.log(error);
+        });
+    // }
   }
-  // get_product_details() {
-  //   this.subscription = this.admin.get_product_details(this.product_id)
-  //     .subscribe((data: any) => {
-  //       this.productForm.patchValue(data.product);
-  //     }, error => {
-  //       console.log(error);
-  //     });
-  // }
+
   get_all_product() {
     this.subscription = this.admin.get_all_product()
       .subscribe((data: any) => {
@@ -82,65 +88,6 @@ export class Product_editComponent implements OnInit {
       }
     );
   }
-  // edit(productId: string) {
-  //   const formData = new FormData();
-  //   formData.append('name', this.productForm.value.name);
-  //   formData.append('default_price', this.productForm.value.default_price);
-  //   formData.append('tech_specs', this.productForm.value.tech_specs);
-  //   formData.append('category_id', this.productForm.value.category_id);
-  //   formData.append('description', this.productForm.value.description);
-
-  //   if (this.imageFiles && this.imageFiles.length > 0) {
-  //     for (let i = 0; i < this.imageFiles.length; i++) {
-  //       formData.append(`image[${i}]`, this.imageFiles[i]);
-  //     }
-  //   }
-
-  //   // this.admin.update_product(id, formData).subscribe(
-  //   //   res => {
-  //   //     console.log(res);
-  //   //     // do something with the response
-  //   //   },
-  //   //   error => {
-  //   //     console.log(error);
-  //   //     // do something with the error
-  //   //   }
-  //   // );
-  // }
-
-  // onSubmit() {
-  //   const formData = new FormData();
-  //   formData.append('name', this.productForm.value.name);
-  //   formData.append('default_price', this.productForm.value.default_price);
-  //   formData.append('tech_specs', this.productForm.value.tech_specs);
-  //   formData.append('category_id', this.productForm.value.category_id);
-  //   formData.append('description', this.productForm.value.description);
-
-  //   if (this.imageFiles && this.imageFiles.length > 0) {
-  //     for (let i = 0; i < this.imageFiles.length; i++) {
-  //       formData.append(`image[${i}]`, this.imageFiles[i]);
-  //     }
-  //   }
-
-  //   this.admin.create_product(formData).subscribe(
-  //     res => {
-  //       console.log(res);
-  //       // do something with the response
-  //     },
-  //     error => {
-  //       console.log(error);
-  //       // do something with the error
-  //     }
-  //   );
-  // }
-
-  // onFileSelected(event:any) {
-  //   if (event.target.files.length > 0) {
-  //     for (let i = 0; i < event.target.files.length; i++) {
-  //       this.imageFiles.push(event.target.files[i]);
-  //     }
-  //   }
-  // }
 
   onFileSelected(event:any) {
     if (event.target.files.length > 0) {

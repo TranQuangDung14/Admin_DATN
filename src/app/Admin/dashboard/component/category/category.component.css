@@ -14,6 +14,9 @@
   border-radius: 5px;
   padding: 5px 10px;
 }
+.btn-close{
+  background-color: #999999;
+}
 /* select.form-select option:hover {
   background-color: #fff;
 } */
