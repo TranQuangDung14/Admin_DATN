@@ -27,6 +27,7 @@ import { TransportComponent } from './dashboard/component/transport/transport.co
 import { Product_addComponent } from './dashboard/component/product/product_add/product_add.component';
 import { Product_editComponent } from './dashboard/component/product/product_edit/product_edit.component';
 // import { CKEditorModule } from 'ckeditor4-angular';
+import { Warehouse_updateComponent } from './dashboard/component/warehouse/warehouse_update/warehouse_update.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 
 const router_home:Routes=[
@@ -85,6 +86,11 @@ const router_home:Routes=[
       component:TransportComponent,
       canActivate: [AuthGuardGuard],
     },
+    {
+      path:"Warehouse-update",
+      component:Warehouse_updateComponent,
+      canActivate: [AuthGuardGuard],
+    },
 
     // {
     //   path:"chi-tiet-san-pham/:id",
@@ -120,6 +126,7 @@ const router_home:Routes=[
     OrderComponent,
     OrderHistoryComponent,
     TransportComponent,
+    Warehouse_updateComponent,
 
 
 
