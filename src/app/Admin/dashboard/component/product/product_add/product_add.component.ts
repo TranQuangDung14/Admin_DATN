@@ -59,10 +59,12 @@ export class Product_addComponent implements OnInit {
         formData.append(`image[${i}]`, this.imageFiles[i]);
       }
     }
-
+    formData.forEach((value, key) => {
+      console.log(key, value)
+    }),
     this.admin.create_product(formData).subscribe(
       res => {
-        this.router.navigate(['/product']);
+        // this.router.navigate(['/product']);
         this.toastr.success('Thêm mới thành công!', );
         // console.log(res);
         // do something with the response

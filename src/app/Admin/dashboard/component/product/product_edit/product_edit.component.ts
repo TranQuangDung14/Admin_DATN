@@ -16,7 +16,7 @@ export class Product_editComponent implements OnInit {
   imageFiles: File[] = [];
   category_product :any;
   product:any;
-  id:number=0;
+  id:number;
   images:any;
   constructor(
     private formBuilder: FormBuilder,
@@ -45,7 +45,7 @@ export class Product_editComponent implements OnInit {
         .subscribe((data: any) => {
           this.productForm.patchValue(data.product); // đưa data vào form
           this.product=data.product;
-          this.images=data.images;
+          // this.images=data.images;
           console.log('data',data);
         }, error => {
           console.log(error);
@@ -66,10 +66,10 @@ export class Product_editComponent implements OnInit {
 
   onSubmit() {
     const formData = new FormData();
+    formData.append('category_id', this.productForm.value.category_id);
     formData.append('name', this.productForm.value.name);
     formData.append('default_price', this.productForm.value.default_price);
     formData.append('tech_specs', this.productForm.value.tech_specs);
-    formData.append('category_id', this.productForm.value.category_id);
     formData.append('description', this.productForm.value.description);
     // console.log('name',formData);
     if (this.imageFiles && this.imageFiles.length > 0) {
@@ -77,10 +77,19 @@ export class Product_editComponent implements OnInit {
         formData.append(`image[${i}]`, this.imageFiles[i]);
       }
     }
-
+    console.log(this.productForm.value);
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
+    formData.forEach((value, key) => {
+      console.log(key, value)
+    }),
+    // console.log(this.productForm.value);
+    // console.log(this.productForm.value);
     this.admin.update_product(this.id, formData).subscribe(
+    // this.admin.update_product(this.id, this.productForm.value).subscribe(
       res => {
-        console.log(res);
+        console.log('vào đây r',res);
         // do something with the response
         this.router.navigate(['/product']); // navigate to products page after successful update
       },
@@ -89,6 +98,12 @@ export class Product_editComponent implements OnInit {
         // do something with the error
       }
     );
+  }
+  deleteImage(imageId: number) {
+    const index = this.product.images.findIndex((img:any) => img.id === imageId);
+    if (index !== -1) {
+      this.product.images.splice(index, 1);
+    }
   }
 
   onFileSelected(event:any) {
