@@ -423,7 +423,8 @@ export class ApiService {
   get_product(id: number): Observable<any> {
     return this._http.get<any>(this.API_URL + 'product/' + id, {
       headers: {
-        Authorization: this.code_tokens
+        Authorization: this.code_tokens,
+        'Content-Type': 'multipart/form-data'
       },
       // {  var formData = new FormData(),
       //   formData.append('file', this.postForm.value)
@@ -431,11 +432,14 @@ export class ApiService {
 
     })
   }
-  update_product(id: number, data: any): Observable<any> {
-    return this._http.put<any>(this.API_URL + 'product/' + id, data, {
+     // 'Content-Type': 'application/json',
+        // 'Content-Type': 'multipart/form-data'
+  update_product(id: number, data :any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'product/' + id, data, {
       headers: {
         Authorization: this.code_tokens,
         // 'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data'
       }
     });
   }

@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
+//test
+
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product_edit',
@@ -18,6 +21,7 @@ export class Product_editComponent implements OnInit {
   product:any;
   id:number;
   images:any;
+  data =[];
   constructor(
     private formBuilder: FormBuilder,
     private admin: ApiService,
@@ -71,22 +75,23 @@ export class Product_editComponent implements OnInit {
     formData.append('default_price', this.productForm.value.default_price);
     formData.append('tech_specs', this.productForm.value.tech_specs);
     formData.append('description', this.productForm.value.description);
+    // formData.append('_method', 'PUT');
+
     // console.log('name',formData);
     if (this.imageFiles && this.imageFiles.length > 0) {
       for (let i = 0; i < this.imageFiles.length; i++) {
         formData.append(`image[${i}]`, this.imageFiles[i]);
       }
     }
+    // const data = JSON.stringify(this.productForm.value);
     console.log(this.productForm.value);
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
+
     formData.forEach((value, key) => {
-      console.log(key, value)
+      console.log(key, value);
     }),
-    // console.log(this.productForm.value);
-    // console.log(this.productForm.value);
-    this.admin.update_product(this.id, formData).subscribe(
+    // this.data.push(formData)
+    this.admin.update_product(this.id,formData).subscribe(
+      // this.subscription.add(this.admin.update_product(this.id, formData).subscribe(
     // this.admin.update_product(this.id, this.productForm.value).subscribe(
       res => {
         console.log('vào đây r',res);
@@ -94,6 +99,9 @@ export class Product_editComponent implements OnInit {
         this.router.navigate(['/product']); // navigate to products page after successful update
       },
       error => {
+        formData.forEach((value, key) => {
+          console.log(key, value);
+        }),
         console.log('lỗi đấy',error);
         // do something with the error
       }

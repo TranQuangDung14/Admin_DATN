@@ -32,14 +32,14 @@
               <label for="image">Ảnh sản phẩm</label>
               <input type="file" class="form-control" (change)="onFileSelected($event)" multiple>
             </div>
-            <!-- <div class="row">
+            <div class="row">
               <div class="col">
                 <div class="mt-2" *ngFor="let image of product.images">
                   <img src="http://127.0.0.1:8000/storage/image/product/{{ image.image }}" style="width: 150px;" alt="" >
                   <button (click)="deleteImage(image.id)">X</button>
                 </div></div>
-              <div class="col"> <span id="preview"></span></div>
-            </div> -->
+                <div class="col"> <span id="preview"></span></div>
+            </div>
 
             <!-- <div class="mt-2" id="preview" *ngFor="let image of images">
               <img src="http://127.0.0.1:8000/storage/image/product/{{ image.image }}" style="width: 150px;" alt="" >
