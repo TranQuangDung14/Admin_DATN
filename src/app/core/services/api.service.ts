@@ -424,7 +424,7 @@ export class ApiService {
     return this._http.get<any>(this.API_URL + 'product/' + id, {
       headers: {
         Authorization: this.code_tokens,
-        'Content-Type': 'multipart/form-data'
+        // 'Content-Type': 'multipart/form-data'
       },
       // {  var formData = new FormData(),
       //   formData.append('file', this.postForm.value)
@@ -439,7 +439,7 @@ export class ApiService {
       headers: {
         Authorization: this.code_tokens,
         // 'Content-Type': 'application/json'
-        'Content-Type': 'multipart/form-data'
+        // 'Content-Type': 'multipart/form-data'
       }
     });
   }

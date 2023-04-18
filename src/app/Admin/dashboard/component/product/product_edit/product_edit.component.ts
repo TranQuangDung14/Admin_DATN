@@ -34,7 +34,7 @@ export class Product_editComponent implements OnInit {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
       default_price: ['', Validators.required],
-      // price: ['', Validators.required],
+      // price: ['', Validators..],
       tech_specs: [''],
       category_id: [''],
       description: [''],
@@ -44,7 +44,6 @@ export class Product_editComponent implements OnInit {
     this.get_all_product();
 
 
-    // get_product_details() {
       this.subscription = this.admin.get_product(this.id)
         .subscribe((data: any) => {
           this.productForm.patchValue(data.product); // đưa data vào form
@@ -54,7 +53,6 @@ export class Product_editComponent implements OnInit {
         }, error => {
           console.log(error);
         });
-    // }
   }
 
   get_all_product() {
@@ -69,7 +67,13 @@ export class Product_editComponent implements OnInit {
   }
 
   onSubmit() {
+
     const formData = new FormData();
+    // if (this.product.images && this.product.images.length > 0) {
+    //   for (let i = 0; i < this.product.images.length; i++) {
+    //     formData.append(`existing_images[${i}]`, this.product.images[i].id);
+    //   }
+    // }
     formData.append('category_id', this.productForm.value.category_id);
     formData.append('name', this.productForm.value.name);
     formData.append('default_price', this.productForm.value.default_price);
@@ -77,26 +81,51 @@ export class Product_editComponent implements OnInit {
     formData.append('description', this.productForm.value.description);
     // formData.append('_method', 'PUT');
 
+    // if (this.product.images && this.product.images.length > 0) {
+    //   for (let i = 0; i < this.product.images.length; i++) {
+    //     formData.append(`existing_images[${i}]`, this.product.images[i].id);
+    //   }
+    // }
+
+
     // console.log('name',formData);
+    // if (this.imageFiles && this.imageFiles.length > 0) {
+    //   for (let i = 0; i < this.imageFiles.length; i++) {
+    //     formData.append(`image[${i}]`, this.imageFiles[i]);
+    //   }
+    // }
+
+    // if (this.product.images && this.product.images.length > 0) {
+    //   for (let i = 0; i < this.product.images.length; i++) {
+    //     if (this.product.images[i].id) { // Thêm điều kiện kiểm tra tệp không phải null
+    //       formData.append(`existing_images[${i}]`, this.product.images[i].id);
+    //     }
+    //   }
+    // }
+
+    console.log('name',formData);
     if (this.imageFiles && this.imageFiles.length > 0) {
       for (let i = 0; i < this.imageFiles.length; i++) {
-        formData.append(`image[${i}]`, this.imageFiles[i]);
+        if (this.imageFiles[i]) { // Thêm điều kiện kiểm tra tệp không phải null
+          formData.append(`existing_images[${i}]`, this.product.images[i].id);
+          formData.append(`image[${i}]`, this.imageFiles[i]);
+        }
       }
     }
-    // const data = JSON.stringify(this.productForm.value);
-    console.log(this.productForm.value);
 
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    }),
-    // this.data.push(formData)
+  formData.forEach((value, key) => {
+    console.log('?',key, value);
+  })
+    console.log(this.productForm.value);
     this.admin.update_product(this.id,formData).subscribe(
-      // this.subscription.add(this.admin.update_product(this.id, formData).subscribe(
-    // this.admin.update_product(this.id, this.productForm.value).subscribe(
+
       res => {
         console.log('vào đây r',res);
+        formData.forEach((value, key) => {
+          console.log(key, value);
+        })
         // do something with the response
-        this.router.navigate(['/product']); // navigate to products page after successful update
+        // this.router.navigate(['/product']); // navigate to products page after successful update
       },
       error => {
         formData.forEach((value, key) => {
