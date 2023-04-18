@@ -6,3 +6,8 @@
   border-radius: 5px;
   padding: 5px 10px;
 }
+.image-wrapper {
+  display: inline-block;
+  vertical-align: top; /* căn trên cùng của các hình ảnh */
+  margin-right: 10px; /* tạo khoảng cách giữa các hình ảnh */
+}
