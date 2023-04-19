@@ -42,7 +42,7 @@
                 <!-- <td>{{cate.status}}</td> -->
                 <td>
                   <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(cate.id)"
-                    data-bs-target="#modal_edit">
+                    data-bs-target="#editwarehouse">
                     Cập nhật kho
                   </button>
                   <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
@@ -63,38 +63,29 @@
     </div>
   </div>
 </div>
-<!-- Modal edit -->
-<!-- <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+
+<div class="modal fade" id="editwarehouse" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="category_product_from" (ngSubmit)="onEdit()">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa danh mục sản phẩm</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="example-input-group" class="form-label">Tên danh mục <span style="color: red;">*</span></label>
-            <div class="input-group input-group-outline">
-              <input type="text" formControlName="name" placeholder=" name" class="form-control"
-                id="example-input-group">
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="example-input-group">Nhà cung cấp <span style="color: red;">*</span></label>
-            <select formControlName="product_supplier_id" class="form-select">
-              <option [ngValue]="null" disabled selected>--Chọn nhà cung cấp<span style="color: red;">*</span>--
-              </option>
-              <option *ngFor="let item of supplier" [ngValue]="item.id">{{item.name}}</option>
-            </select>
+      <form action="" method="POST" [formGroup]="warehouse_fromEdit" (ngSubmit)="onEdit()">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Cập nhập số lượng cho sản phẩm: </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="example-input-group" class="form-label">Số lượng <span style="color: red;">*</span></label>
+          <div class="input-group input-group-outline">
+            <input type="number" formControlName="amount" placeholder="Số lượng" class="form-control"
+              id="example-input-group">
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="resetForm()" data-bs-dismiss="modal">Hủy</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Cập nhật</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button class="btn btn-primary" data-bs-toggle="modal">Lưu</button>
+      </div>
       </form>
     </div>
   </div>
-</div> -->
-
+</div>

@@ -84,11 +84,15 @@ export class CategoryComponent implements OnInit {
         this.toastr.success('Thêm mới thành công!', );
 
         // window.location.reload();
+      },
+      (error) => {
+        this.toastr.error('Thêm thất bại!');
       });
   }
   resetForm() {
     this.category_product_from.reset();
   }
+  
   get_id(id: number)
   {
       //  this.id = this._router.snapshot.params['id'];
@@ -111,6 +115,9 @@ export class CategoryComponent implements OnInit {
       // console.log(data);
       this.get_all_category_product();
       this.toastr.success('Cập nhật thành công!', );
+    },
+    (error) => {
+      this.toastr.error('cập nhật thất bại!');
     });
   }
 
