@@ -34,8 +34,8 @@
             </div>
             <div class="row">
               <!-- <div class="col"> -->
-                <div class="col-2 mt-2" *ngFor="let image of product.images">
-                  <img src="http://127.0.0.1:8000/storage/image/product/{{ image.image }}" style="width: 150px;" alt="" >
+                <div class="col-2 mt-2" *ngFor="let image of product?.images">
+                  <img src="http://127.0.0.1:8000/storage/image/product/{{ image.image}}" style="width: 150px;" alt="" >
                   <button (click)="deleteImage(image.id)">X</button>
                 </div>
                 <div class=" mt-2"> <span id="preview"></span></div>

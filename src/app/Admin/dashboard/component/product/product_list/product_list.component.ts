@@ -14,7 +14,7 @@ export class Product_listComponent implements OnInit {
   private subscription: Subscription;
   // Mục khai báo biến
   category_product: any;
-  product :any;
+  product :any[];
   // supplier: any;
   title='Sản phẩm';
   // id :any;
@@ -52,10 +52,10 @@ export class Product_listComponent implements OnInit {
       this.subscription = this.admin.get_all_product()
         .subscribe((data: any) => {
           console.log('san pham',data.product);
-          console.log(data.category_product);
+          // console.log(data.category_product);
 
           this.product = data.product;
-          this.category_product = data.category_product;
+          // this.category_product = data.category_product;
         }, error => {
           console.log(error);
 

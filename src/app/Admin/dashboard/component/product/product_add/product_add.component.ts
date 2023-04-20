@@ -64,7 +64,7 @@ export class Product_addComponent implements OnInit {
     }),
     this.admin.create_product(formData).subscribe(
       res => {
-        // this.router.navigate(['/product']);
+        this.router.navigate(['/product']);
         this.toastr.success('Thêm mới thành công!', );
         // console.log(res);
         // do something with the response

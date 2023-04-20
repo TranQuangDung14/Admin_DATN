@@ -37,10 +37,15 @@
                 *ngFor="let item of product|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
                 <td>{{item.name}}</td>
-                <!-- <td>{{item.img_src}}</td> -->
-                <td><img src="{{ item.img_src }}" alt="" style="width: 80px; height: 80px"></td>
-                <td>{{item.name_cate}}</td>
-                <td>{{item.amount}}</td>
+                <!-- <td>
+                  <div *ngFor="let image of product[0].images">
+                    <img style="width: 80px; height: 80px" [src]="'http://127.0.0.1:8000/storage/image/product/' + image.image">
+                </div>
+
+                </td> -->
+                <td><img [src]="'http://127.0.0.1:8000/storage/image/product/'+item.images?.[0]?.image" alt="" style="width: 80px; height: 80px"></td>
+                <td >{{ item.category.name}}</td>
+                <td>{{item.warehouse.amount}}</td>
                 <td>
                   <a [routerLink]="['/product-edit/',item.id]">
                   <button type="button" class="btn btn-secondary me-2"
