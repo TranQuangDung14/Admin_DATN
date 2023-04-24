@@ -16,8 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CategoryComponent implements OnInit {
   private subscription: Subscription;
   // Mục khai báo biến
-  category_product: any;
-  supplier: any;
+  category: any;
   title='Danh mục sản phẩm';
   categoryId :any;
   id: number;
@@ -45,7 +44,7 @@ export class CategoryComponent implements OnInit {
   category_product_from: FormGroup = new FormGroup({
     // id: new FormControl(),
     name: new FormControl('', Validators.required),
-    product_supplier_id: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
   });
 
   ngOnInit() {
@@ -65,8 +64,8 @@ export class CategoryComponent implements OnInit {
         // console.log('category_product', data.category_product);
         // console.log('supplier', data.supplier);
         // console.log('category', data.category);
-        this.category_product = data.category_product;
-        this.supplier = data.supplier;
+        this.category = data.category;
+        // this.supplier = data.supplier;
       },
       (error) => {
         console.log(error);
@@ -92,7 +91,7 @@ export class CategoryComponent implements OnInit {
   resetForm() {
     this.category_product_from.reset();
   }
-  
+
   get_id(id: number)
   {
       //  this.id = this._router.snapshot.params['id'];

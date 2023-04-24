@@ -70,7 +70,7 @@ export class Product_addComponent implements OnInit {
         // do something with the response
       },
       error => {
-        console.log(error);
+        console.log('loi',error);
         this.toastr.error('Thêm mới thất bại kiểm tra lại!', );
         // do something with the error
       }

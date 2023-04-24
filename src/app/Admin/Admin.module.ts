@@ -29,6 +29,7 @@ import { Product_editComponent } from './dashboard/component/product/product_edi
 // import { CKEditorModule } from 'ckeditor4-angular';
 import { Warehouse_updateComponent } from './dashboard/component/warehouse/warehouse_update/warehouse_update.component';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { BrandsComponent } from './dashboard/component/brands/brands.component';
 
 const router_home:Routes=[
   {
@@ -91,6 +92,11 @@ const router_home:Routes=[
       component:Warehouse_updateComponent,
       canActivate: [AuthGuardGuard],
     },
+    {
+      path:"brands",
+      component:BrandsComponent,
+      canActivate: [AuthGuardGuard],
+    },
 
     // {
     //   path:"chi-tiet-san-pham/:id",
@@ -127,6 +133,7 @@ const router_home:Routes=[
     OrderHistoryComponent,
     TransportComponent,
     Warehouse_updateComponent,
+    BrandsComponent,
 
 
 
