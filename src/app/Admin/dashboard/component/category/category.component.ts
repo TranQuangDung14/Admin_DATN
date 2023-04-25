@@ -61,11 +61,7 @@ export class CategoryComponent implements OnInit {
   get_all_category_product() {
     this.subscription = this.admin.getallcategory_product().subscribe(
       (data: any) => {
-        // console.log('category_product', data.category_product);
-        // console.log('supplier', data.supplier);
-        // console.log('category', data.category);
         this.category = data.category;
-        // this.supplier = data.supplier;
       },
       (error) => {
         console.log(error);
@@ -100,7 +96,7 @@ export class CategoryComponent implements OnInit {
       // console.log('1',data)
       this.category_product_from = new FormGroup({
         name: new FormControl(data.name,Validators.required),
-        product_supplier_id: new FormControl(data.product_supplier_id),
+        description: new FormControl(data.description),
       });
       // this.isEdit = true; // Xác định là chức năng sửa
     })

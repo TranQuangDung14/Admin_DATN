@@ -43,7 +43,7 @@
                 <td>{{item.name}}</td>
                 <td>{{item.email}}</td>
                 <td>{{item.adress}}</td>
-                <td>{{item.number_phone}}</td>
+                <td>0{{item.number_phone}}</td>
                 <td>
                   <!-- <a class="btn btn-secondary" style="margin-right: 10px ;"
                     [routerLink]="[cate.id]">Sửa</a> -->
@@ -105,14 +105,7 @@
           <div class="mb-3">
             <label for="example-input-group" class="form-label">Số điện thoại</label>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="number_phone" placeholder="nhập số điện thoại" class="form-control"
-                id="example-input-group">
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="example-input-group" class="form-label">Loại hàng hóa</label>
-            <div class="input-group input-group-outline">
-              <input type="text" formControlName="sectors" placeholder="Nhập loại hàng cung cấp" class="form-control"
+              <input type="number" formControlName="number_phone" placeholder="nhập số điện thoại" class="form-control"
                 id="example-input-group">
             </div>
           </div>
@@ -160,17 +153,17 @@
           <div class="mb-3">
             <label for="example-input-group" class="form-label">Số điện thoại</label>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="number_phone" placeholder="nhập số điện thoại" class="form-control"
+              <input type="number" formControlName="number_phone" placeholder="nhập số điện thoại" class="form-control"
                 id="example-input-group">
             </div>
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="example-input-group" class="form-label">Loại hàng hóa</label>
             <div class="input-group input-group-outline">
               <input type="text" formControlName="sectors" placeholder="Nhập loại hàng cung cấp" class="form-control"
                 id="example-input-group">
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="resetForm()" data-bs-dismiss="modal">Hủy</button>

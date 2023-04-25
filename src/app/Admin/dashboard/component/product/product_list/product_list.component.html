@@ -13,7 +13,7 @@
                   </div>
                   <a routerLink="/product-add">
                     <button type="button" class="btn btn-success float-end">
-                     Thêm mới
+                      <i class="fas fa-plus"></i> Thêm mới
                   </button></a>
                 </div>
           </div>
@@ -48,14 +48,14 @@
                 <td>{{item.warehouse.amount}}</td>
                 <td>
                   <a [routerLink]="['/product-edit/',item.id]">
-                  <button type="button" class="btn btn-secondary me-2"
+                  <button type="button" class="btn btn-primary me-2"
                     data-bs-target="#modal_edit">
-                    Sửa
+                    <i class="fas fa-edit"></i>
                   </button>
                 </a>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal_delete"
                     (click)="openModal(item.id)">
-                    Xóa
+                    <i class="fas fa-trash"></i>
                   </button>
 
                 </td>

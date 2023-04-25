@@ -15,7 +15,7 @@
                   </div>
                   <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
                   data-bs-target="#modal_add">
-                  Thêm mới
+                  <i class="fas fa-plus"></i> Thêm mới
                 </button>
                 </div>
           </div>
@@ -27,31 +27,30 @@
             <thead>
               <tr>
                 <th class="text-secondary opacity-7">STT</th>
-                <th class="text-secondary opacity-7">Danh mục sản phẩm</th>
-                <th class="text-secondary opacity-7">Nhà cung cấp</th>
-                <th class="text-secondary opacity-7">Trạng thái</th>
+                <th class="text-secondary opacity-7">Tên thương hiệu(hãng)</th>
+                <th class="text-secondary opacity-7">Mô tả</th>
                 <th class="text-secondary opacity-7">Thao tác</th>
               </tr>
             </thead>
             <tbody >
-              <!-- <tr
-                *ngFor="let cate of category_product|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+              <tr
+                *ngFor="let item of brands|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
-                <td>{{cate.name}}</td>
-                <td>{{cate.name_supplier}}</td>
-                <td>{{cate.name_status}}</td>
+                <td>{{item.name}}</td>
+                <td [innerHTML]="item.description" ></td>
+                <!-- <td>{{cate.name_status}}</td> -->
                 <td>
-                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(cate.id)"
+                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
                     data-bs-target="#modal_edit">
-                    Sửa
+                    <i class="fas fa-edit"></i>
                   </button>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
-                    (click)="openModal(cate.id)">
-                    Xóa
+                    (click)="openModal(item.id)">
+                    <i class="fas fa-trash"></i>
                   </button>
 
                 </td>
-              </tr> -->
+              </tr>
             </tbody>
           </table>
           <div>
@@ -65,64 +64,57 @@
 </div>
 
 <!-- Modal add -->
-<!-- <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="category_product_from" (ngSubmit)="onCreate()">
+      <form action="" method="POST" [formGroup]="from_brands" (ngSubmit)="onCreate()">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm mới danh mục sản phẩm</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm mới thương hiệu</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm()" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="example-input-group" class="form-label">Tên danh mục <span style="color: red;">*</span></label>
+            <!-- <label for="example-input-group" class="form-label">Tên thương hiệu <span style="color: red;">*</span></label> -->
+            <h6 for="description">Tên thương hiệu <span style="color: red;">*</span></h6>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="name" placeholder=" name" class="form-control"
+              <input type="text" formControlName="name" placeholder="Nhập tên thương hiệu" class="form-control"
                 id="example-input-group">
             </div>
           </div>
-          <div class="mb-3">
-            <label for="example-input-group">Nhà cung cấp <span style="color: red;">*</span></label>
-            <select formControlName="product_supplier_id" class="form-select">
-              <option [ngValue]="null" disabled selected>--Chọn nhà cung cấp<span style="color: red;">*</span>--
-              </option>
-              <option *ngFor="let item of supplier" [ngValue]="item.id">{{item.name}}</option>
-            </select>
+          <div class="form-group mt-3">
+            <h6 for="description">Mô tả thương hiệu</h6>
+            <ckeditor formControlName="description"></ckeditor>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Lưu</button>
         </div>
       </form>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- Modal edit -->
-<!-- <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="category_product_from" (ngSubmit)="onEdit()">
+      <form action="" method="POST" [formGroup]="from_brands" (ngSubmit)="onEdit()">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa danh mục sản phẩm</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa thông tin thương hiệu</h1>
+          <button type="button" class="btn-close" (click)="resetForm()" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="example-input-group" class="form-label">Tên danh mục <span style="color: red;">*</span></label>
+            <h6 for="description">Tên thương hiệu <span style="color: red;">*</span></h6>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="name" placeholder=" name" class="form-control"
+              <input type="text" formControlName="name" placeholder="Nhập thương hiệu" class="form-control"
                 id="example-input-group">
             </div>
           </div>
-          <div class="mb-3">
-            <label for="example-input-group">Nhà cung cấp <span style="color: red;">*</span></label>
-            <select formControlName="product_supplier_id" class="form-select">
-              <option [ngValue]="null" disabled selected>--Chọn nhà cung cấp<span style="color: red;">*</span>--
-              </option>
-              <option *ngFor="let item of supplier" [ngValue]="item.id">{{item.name}}</option>
-            </select>
+          <div class="form-group mt-3">
+            <h6 for="description">Mô tả thương hiệu</h6>
+            <ckeditor formControlName="description"></ckeditor>
           </div>
         </div>
         <div class="modal-footer">
@@ -132,10 +124,10 @@
       </form>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- Modal delete -->
-<!-- <div class="modal fade" id="Modal_delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -147,10 +139,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(categoryId)">Xóa</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(id)">Xóa</button>
 
 
       </div>
     </div>
   </div>
-</div> -->
+</div>

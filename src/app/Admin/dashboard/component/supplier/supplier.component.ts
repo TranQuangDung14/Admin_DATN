@@ -41,7 +41,7 @@ export class SupplierComponent implements OnInit {
     email: new FormControl('',Validators.email),
     adress: new FormControl('',Validators.required),
     number_phone: new FormControl('',[Validators.min(100000000),Validators.max(10000000000)]),
-    sectors: new FormControl('',Validators.required),
+    // sectors: new FormControl('',Validators.required),
   });
 
   // danh sách

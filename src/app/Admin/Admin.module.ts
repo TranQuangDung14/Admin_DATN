@@ -30,6 +30,11 @@ import { Product_editComponent } from './dashboard/component/product/product_edi
 import { Warehouse_updateComponent } from './dashboard/component/warehouse/warehouse_update/warehouse_update.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { BrandsComponent } from './dashboard/component/brands/brands.component';
+import { CustomerComponent } from './dashboard/component/customer/customer.component';
+import { PostComponent } from './dashboard/component/post/post/post.component';
+import { Type_postComponent } from './dashboard/component/post/type_post/type_post.component';
+import { TypeVideoComponent } from './dashboard/component/video/type-video/type-video.component';
+import { VideoComponent } from './dashboard/component/video/video/video.component';
 
 const router_home:Routes=[
   {
@@ -97,6 +102,31 @@ const router_home:Routes=[
       component:BrandsComponent,
       canActivate: [AuthGuardGuard],
     },
+    {
+      path:"customer",
+      component:CustomerComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"post",
+      component:PostComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"type-post",
+      component:Type_postComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"type-video",
+      component:TypeVideoComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"video",
+      component:VideoComponent,
+      canActivate: [AuthGuardGuard],
+    },
 
     // {
     //   path:"chi-tiet-san-pham/:id",
@@ -134,7 +164,11 @@ const router_home:Routes=[
     TransportComponent,
     Warehouse_updateComponent,
     BrandsComponent,
-
+    CustomerComponent,
+    PostComponent,
+    Type_postComponent,
+    TypeVideoComponent,
+    VideoComponent,
 
 
 

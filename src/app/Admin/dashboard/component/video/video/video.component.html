@@ -4,14 +4,14 @@
       <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
           <div class="col-6">
-            <h6 class="text-white text-capitalize ps-3">Danh mục sản phẩm</h6>
+            <h6 class="text-white text-capitalize ps-3">Loại bài viết</h6>
 
           </div>
           <div class="col-6 ">
                 <div class="d-flex">
                   <div class="flex-grow-1 me-2">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                                  placeholder=" Tìm kiếm danh mục">
+                                  placeholder=" Tìm kiếm loại bài viết">
                   </div>
                   <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
                   data-bs-target="#modal_add">
@@ -27,26 +27,24 @@
             <thead>
               <tr>
                 <th class="text-secondary opacity-7">STT</th>
-                <th class="text-secondary opacity-7">Danh mục sản phẩm</th>
-                <!-- <th class="text-secondary opacity-7">Nhà cung cấp</th> -->
-                <th class="text-secondary opacity-7">Trạng thái</th>
+                <th class="text-secondary opacity-7">Loại bài viết</th>
+                <!-- <th class="text-secondary opacity-7">Mô tả</th> -->
                 <th class="text-secondary opacity-7">Thao tác</th>
               </tr>
             </thead>
             <tbody >
               <tr
-                *ngFor="let cate of category|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                *ngFor="let item of type_post|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
-                <td>{{cate.name}}</td>
-                <!-- <td>{{cate.name_supplier}}</td> -->
-                <td>{{cate.status}}</td>
+                <td>{{item.name}}</td>
+                <!-- <td [innerHTML]="item.description" ></td> -->
                 <td>
-                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(cate.id)"
+                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
                     data-bs-target="#modal_edit">
                     <i class="fas fa-edit"></i>
                   </button>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
-                    (click)="openModal(cate.id)">
+                    (click)="openModal(item.id)">
                     <i class="fas fa-trash"></i>
                   </button>
 
@@ -68,29 +66,24 @@
 <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="category_product_from" (ngSubmit)="onCreate()">
+      <form action="" method="POST" [formGroup]="from_type_post" (ngSubmit)="onCreate()">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm mới danh mục sản phẩm</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm loại bài viết</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm()" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="example-input-group" class="form-label">Tên danh mục <span style="color: red;">*</span></label>
+            <!-- <label for="example-input-group" class="form-label">Tên thương hiệu <span style="color: red;">*</span></label> -->
+            <h6 for="description">Loại bài viết <span style="color: red;">*</span></h6>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="name" placeholder=" name" class="form-control"
+              <input type="text" formControlName="name" placeholder="Nhập loại bài viết" class="form-control"
                 id="example-input-group">
             </div>
-          </div>
-
-          <div class="form-group mt-3">
-            <h6 for="description">Mô tả danh mục</h6>
-            <ckeditor formControlName="description"></ckeditor>
-            <!-- <input type="text" class="form-control" formControlName="price"> -->
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Lưu</button>
         </div>
       </form>
     </div>
@@ -101,23 +94,20 @@
 <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="category_product_from" (ngSubmit)="onEdit()">
+      <form action="" method="POST" [formGroup]="from_type_post" (ngSubmit)="onEdit()">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa danh mục sản phẩm</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa Loại bài viết</h1>
+          <button type="button" class="btn-close" (click)="resetForm()" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="example-input-group" class="form-label">Tên danh mục <span style="color: red;">*</span></label>
+            <h6 for="description">Loại bài viết<span style="color: red;">*</span></h6>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="name" placeholder=" name" class="form-control"
+              <input type="text" formControlName="name" placeholder="Nhập loại bài viết" class="form-control"
                 id="example-input-group">
             </div>
           </div>
-          <div class="form-group mt-3">
-            <h6 for="description">Mô tả danh mục</h6>
-            <ckeditor formControlName="description"></ckeditor>
-          </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="resetForm()" data-bs-dismiss="modal">Hủy</button>
@@ -141,8 +131,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <!-- <button type="button" class="btn btn-danger" (click)="onDelete(id)">Xóa</button> -->
-        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(categoryId)">Xóa</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(id)">Xóa</button>
 
 
       </div>

@@ -650,5 +650,44 @@ export class ApiService {
       }
     );
   }
+   //Thương hiệu
+   get_all_brands(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'brands/', {
+      headers: {
+        Authorization: this.code_tokens
+      }
+    });
+  }
+  create_brands(data:any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'brands/',data, {
+      headers: {
+        Authorization: this.code_tokens
+      }
+    })
+  }
+  get_brands(id: number): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'brands/' + id, {
+      headers: {
+        Authorization: this.code_tokens
+      }
+    })
+  }
+  update_brands(id: number, data: any): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'brands/' + id, data, {
+      headers: {
+        Authorization: this.code_tokens
+      }
+    });
+  }
+  delete_brands(id: number): Observable<any> {
+    return this._http.delete<any>(this.API_URL + 'brands/' + id
+      ,
+      {
+        headers: {
+          Authorization: this.code_tokens
+        }
+      }
+    );
+  }
 
 }

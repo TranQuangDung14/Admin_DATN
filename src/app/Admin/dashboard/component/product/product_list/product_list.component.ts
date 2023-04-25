@@ -16,7 +16,7 @@ export class Product_listComponent implements OnInit {
   category_product: any;
   product :any[];
   // supplier: any;
-  title='Sản phẩm';
+  title='Danh sách Sản phẩm';
   // id :any;
   id: number;
   // isEdit: boolean = true;

@@ -4,19 +4,19 @@
       <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
           <div class="col-6">
-            <h6 class="text-white text-capitalize ps-3">Danh mục sản phẩm</h6>
+            <h6 class="text-white text-capitalize ps-3">Danh sách khách hàng</h6>
 
           </div>
           <div class="col-6 ">
                 <div class="d-flex">
                   <div class="flex-grow-1 me-2">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                                  placeholder=" Tìm kiếm danh mục">
+                                  placeholder=" Tìm kiếm khách hàng">
                   </div>
-                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                  <!-- <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
                   data-bs-target="#modal_add">
                   <i class="fas fa-plus"></i> Thêm mới
-                </button>
+                </button> -->
                 </div>
           </div>
         </div>
@@ -27,26 +27,33 @@
             <thead>
               <tr>
                 <th class="text-secondary opacity-7">STT</th>
-                <th class="text-secondary opacity-7">Danh mục sản phẩm</th>
-                <!-- <th class="text-secondary opacity-7">Nhà cung cấp</th> -->
-                <th class="text-secondary opacity-7">Trạng thái</th>
+                <th class="text-secondary opacity-7">Tên khách hàng</th>
+                <th class="text-secondary opacity-7">ngày sinh</th>
+                <th class="text-secondary opacity-7">Giới tính</th>
+                <th class="text-secondary opacity-7">Email</th>
+                <th class="text-secondary opacity-7">Địa chỉ</th>
+                <th class="text-secondary opacity-7">Số điện thoại</th>
                 <th class="text-secondary opacity-7">Thao tác</th>
               </tr>
             </thead>
             <tbody >
               <tr
-                *ngFor="let cate of category|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                *ngFor="let item of customer|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
-                <td>{{cate.name}}</td>
-                <!-- <td>{{cate.name_supplier}}</td> -->
-                <td>{{cate.status}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.date_of_birth}}</td>
+                <td>{{item.sex}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.adress}}</td>
+                <td>0{{item.number_phone}}</td>
+                <!-- <td>{{item.status}}</td> -->
                 <td>
-                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(cate.id)"
+                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
                     data-bs-target="#modal_edit">
                     <i class="fas fa-edit"></i>
                   </button>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
-                    (click)="openModal(cate.id)">
+                    (click)="openModal(item.id)">
                     <i class="fas fa-trash"></i>
                   </button>
 
@@ -65,10 +72,10 @@
 </div>
 
 <!-- Modal add -->
-<div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="category_product_from" (ngSubmit)="onCreate()">
+      <form action="" method="POST" [formGroup]="itemgory_product_from" (ngSubmit)="onCreate()">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm mới danh mục sản phẩm</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -85,7 +92,6 @@
           <div class="form-group mt-3">
             <h6 for="description">Mô tả danh mục</h6>
             <ckeditor formControlName="description"></ckeditor>
-            <!-- <input type="text" class="form-control" formControlName="price"> -->
           </div>
         </div>
         <div class="modal-footer">
@@ -95,13 +101,13 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Modal edit -->
-<div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="category_product_from" (ngSubmit)="onEdit()">
+      <form action="" method="POST" [formGroup]="itemgory_product_from" (ngSubmit)="onEdit()">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa danh mục sản phẩm</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -126,10 +132,10 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Modal delete -->
-<div class="modal fade" id="Modal_delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="Modal_delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -141,11 +147,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <!-- <button type="button" class="btn btn-danger" (click)="onDelete(id)">Xóa</button> -->
-        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(categoryId)">Xóa</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(itemgoryId)">Xóa</button>
 
 
       </div>
     </div>
   </div>
-</div>
+</div> -->
