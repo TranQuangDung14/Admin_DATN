@@ -27,14 +27,14 @@
             <thead>
               <tr>
                 <th class="text-secondary opacity-7">STT</th>
-                <th class="text-secondary opacity-7">Loại bài viết</th>
+                <th class="text-secondary opacity-7">Danh mục video</th>
                 <!-- <th class="text-secondary opacity-7">Mô tả</th> -->
                 <th class="text-secondary opacity-7">Thao tác</th>
               </tr>
             </thead>
             <tbody >
               <tr
-                *ngFor="let item of type_post|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                *ngFor="let item of type_video|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
                 <td>{{item.name}}</td>
                 <!-- <td [innerHTML]="item.description" ></td> -->
@@ -66,15 +66,15 @@
 <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="from_type_post" (ngSubmit)="onCreate()">
+      <form action="" method="POST" [formGroup]="from_type_video" (ngSubmit)="onCreate()">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm loại bài viết</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm danh mục video</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm()" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
             <!-- <label for="example-input-group" class="form-label">Tên thương hiệu <span style="color: red;">*</span></label> -->
-            <h6 for="description">Loại bài viết <span style="color: red;">*</span></h6>
+            <h6 for="description">Danh mục video <span style="color: red;">*</span></h6>
             <div class="input-group input-group-outline">
               <input type="text" formControlName="name" placeholder="Nhập loại bài viết" class="form-control"
                 id="example-input-group">
@@ -94,14 +94,14 @@
 <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="from_type_post" (ngSubmit)="onEdit()">
+      <form action="" method="POST" [formGroup]="from_type_video" (ngSubmit)="onEdit()">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa Loại bài viết</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa danh mục video</h1>
           <button type="button" class="btn-close" (click)="resetForm()" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <h6 for="description">Loại bài viết<span style="color: red;">*</span></h6>
+            <h6 for="description">Danh mục video<span style="color: red;">*</span></h6>
             <div class="input-group input-group-outline">
               <input type="text" formControlName="name" placeholder="Nhập loại bài viết" class="form-control"
                 id="example-input-group">

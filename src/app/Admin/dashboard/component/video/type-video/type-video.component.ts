@@ -16,7 +16,7 @@ export class TypeVideoComponent implements OnInit {
  // Id:number;
  // isEdit: boolean = true;
  searchText: any;
- type_post :any;
+ type_video :any;
  //phân trang
  // POSTS: any;
  page: number = 1;
@@ -32,7 +32,7 @@ export class TypeVideoComponent implements OnInit {
    private data_service: ComponentService,
  ) { }
 
- from_type_post: FormGroup = new FormGroup({
+ from_type_video: FormGroup = new FormGroup({
    // id: new FormControl(),
    name: new FormControl('', Validators.required),
    description: new FormControl('', Validators.required),
@@ -44,14 +44,14 @@ export class TypeVideoComponent implements OnInit {
  }
  ngOnInit() {
    this.send_title();
-   this.get_all_type_post();
+   this.get_all_type_video();
  }
 //all
-get_all_type_post() {
- this.admin.get_all_type_posts().subscribe(
+get_all_type_video() {
+ this.admin.get_all_type_video().subscribe(
    (data: any) => {
-     this.type_post = data;
-     console.log(this.type_post);
+     this.type_video = data;
+     console.log(this.type_video);
    },
    (error) => {
      console.log(error);
@@ -63,10 +63,10 @@ get_all_type_post() {
 // thêm mới
 onCreate() {
  // this.submitted=true;
- this.admin.create_type_posts(this.from_type_post.value).subscribe((data) => {
-     // this.from_type_post.reset();
+ this.admin.create_type_video(this.from_type_video.value).subscribe((data) => {
+     // this.from_type_video.reset();
      this.resetForm();
-     this.get_all_type_post();
+     this.get_all_type_video();
      this.toastr.success('Thêm mới thành công!', );
 
    },
@@ -75,7 +75,7 @@ onCreate() {
    });
 }
 resetForm() {
- this.from_type_post.reset();
+ this.from_type_video.reset();
 }
 
 get_id(id: number)
@@ -83,9 +83,9 @@ get_id(id: number)
    //  this.id = this._router.snapshot.params['id'];
    this.id =id;
    console.log('id',id)
- this.admin.get_type_posts(id).subscribe(data => {
+ this.admin.get_type_video(id).subscribe(data => {
    // console.log('1',data)
-   this.from_type_post = new FormGroup({
+   this.from_type_video = new FormGroup({
      name: new FormControl(data.name,Validators.required),
    });
  })
@@ -93,9 +93,9 @@ get_id(id: number)
 
 onEdit() {
 
- this.admin.update_type_posts(this.id, this.from_type_post.value).subscribe(data => {
-   this.from_type_post.reset();
-   this.get_all_type_post();
+ this.admin.update_type_video(this.id, this.from_type_video.value).subscribe(data => {
+   this.from_type_video.reset();
+   this.get_all_type_video();
    this.toastr.success('Cập nhật thành công!', );
  },
  (error) => {
@@ -104,8 +104,8 @@ onEdit() {
 }
 
 onDelete(id: number) {
- this.admin.delete_type_posts(id).subscribe((data) => {
-   this.get_all_type_post();
+ this.admin.delete_type_video(id).subscribe((data) => {
+   this.get_all_type_video();
    this.toastr.success('Xóa thành công!', );
  },
  (error) => {
@@ -120,12 +120,12 @@ openModal(id: number): void {
 //phân trang
 ontableDataChange(event: any) {
  this.page = event;
- this.get_all_type_post();
+ this.get_all_type_video();
 }
 ontableSizeChange(event: any): void {
  this.tableSize = event.target.value;
  this.page = 1;
- this.get_all_type_post();
+ this.get_all_type_video();
 }
 
 }
