@@ -18,6 +18,7 @@ export class VideoComponent implements OnInit {
  // isEdit: boolean = true;
  searchText: any;
  video :any;
+ type_video:any;
  //phân trang
  // POSTS: any;
  page: number = 1;
@@ -55,7 +56,8 @@ get_all_video() {
  this.admin.get_all_video().subscribe(
    (data: any) => {
      this.video = data.video;
-     console.log(this.video);
+     this.type_video=data.type_video;
+    //  console.log(this.video);
    },
    (error) => {
      console.log(error);
@@ -101,8 +103,9 @@ get_id(id: number)
 }
 
 onEdit() {
-
+console.log('data',this.from_video.value)
  this.admin.update_video(this.id, this.from_video.value).subscribe(data => {
+  console.log(data);
    this.from_video.reset();
    this.get_all_video();
    this.toastr.success('Cập nhật thành công!', );

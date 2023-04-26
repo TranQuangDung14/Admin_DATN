@@ -4,14 +4,14 @@
       <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
           <div class="col-6">
-            <h6 class="text-white text-capitalize ps-3">Loại bài viết</h6>
+            <h6 class="text-white text-capitalize ps-3">Video</h6>
 
           </div>
           <div class="col-6 ">
                 <div class="d-flex">
                   <div class="flex-grow-1 me-2">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                                  placeholder=" Tìm kiếm loại bài viết">
+                                  placeholder=" Tìm kiếm video">
                   </div>
                   <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
                   data-bs-target="#modal_add">
@@ -69,21 +69,52 @@
 
 <!-- Modal add -->
 <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg ">
     <div class="modal-content">
       <form action="" method="POST" [formGroup]="from_video" (ngSubmit)="onCreate()">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm loại bài viết</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm mới video</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm()" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <!-- <label for="example-input-group" class="form-label">Tên thương hiệu <span style="color: red;">*</span></label> -->
-            <h6 for="description">Tiêu đề video <span style="color: red;">*</span></h6>
-            <div class="input-group input-group-outline">
-              <input type="text" formControlName="name" placeholder="Nhập loại bài viết" class="form-control"
-                id="example-input-group">
+          <div class="row">
+            <div class="col-6 form-group">
+              <h6 for="category_id">Danh mục video</h6>
+              <select class="form-select" formControlName="type_video_id">
+                <option value="">-- Chọn danh mục video--</option>
+                <option *ngFor="let item of type_video" value="{{ item.id }}">{{ item.name }}</option>
+              </select>
             </div>
+            <div class="col-6 form-group">
+              <h6 for="description">Tiêu đề video <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="title" placeholder="Nhập tiêu đề" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-6 form-group">
+              <h6 for="description">link <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="video" placeholder="Nhập link video" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="description">hashtag <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="hashtag" placeholder="Nhập hashtag" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group mt-4">
+            <h6 for="description">Mô tả danh mục</h6>
+            <ckeditor formControlName="description"></ckeditor>
+            <!-- <input type="text" class="form-control" formControlName="price"> -->
           </div>
         </div>
         <div class="modal-footer">
@@ -97,22 +128,53 @@
 
 <!-- Modal edit -->
 <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <form action="" method="POST" [formGroup]="from_video" (ngSubmit)="onEdit()">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa Loại bài viết</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa video</h1>
           <button type="button" class="btn-close" (click)="resetForm()" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <h6 for="description">Loại bài viết<span style="color: red;">*</span></h6>
-            <div class="input-group input-group-outline">
-              <input type="text" formControlName="name" placeholder="Nhập loại bài viết" class="form-control"
-                id="example-input-group">
+          <div class="row">
+            <div class="col-6 form-group">
+              <h6 for="category_id">Danh mục video</h6>
+              <select class="form-select" formControlName="type_video_id">
+                <option value="">-- Chọn danh mục video--</option>
+                <option *ngFor="let item of type_video" value="{{ item.id }}">{{ item.name }}</option>
+              </select>
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="description">Tiêu đề video <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="title" placeholder="Nhập tiêu đề" class="form-control"
+                  id="example-input-group">
+              </div>
             </div>
           </div>
+          <div class="row mt-4">
+            <div class="col-6 form-group">
+              <h6 for="description">link <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="video" placeholder="Nhập link video" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="description">hashtag <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="hashtag" placeholder="Nhập hashtag" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
 
+          </div>
+
+          <div class="form-group mt-4">
+            <h6 for="description">Mô tả danh mục</h6>
+            <ckeditor formControlName="description"></ckeditor>
+            <!-- <input type="text" class="form-control" formControlName="price"> -->
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="resetForm()" data-bs-dismiss="modal">Hủy</button>
@@ -128,7 +190,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa video ?</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
