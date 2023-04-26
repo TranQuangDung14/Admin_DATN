@@ -349,7 +349,7 @@ export class ApiService {
     })
   }
   update_posts(id: number, data: any): Observable<any> {
-    return this._http.put<any>(this.API_URL + 'posts/' + id, data, {
+    return this._http.post<any>(this.API_URL + 'posts/' + id, data, {
       headers: {
         Authorization: this.code_tokens
       }

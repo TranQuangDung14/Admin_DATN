@@ -29,7 +29,8 @@
                 <th class="text-secondary opacity-7">STT</th>
                 <th class="text-secondary opacity-7">Tiêu đề</th>
                 <th class="text-secondary opacity-7">link</th>
-                <th class="text-secondary opacity-7">mô tả</th>
+                <th class="text-secondary opacity-7">Ảnh demo</th>
+                <th class="text-secondary opacity-7">Mô tả</th>
                 <!-- <th class="text-secondary opacity-7">Mô tả</th> -->
                 <th class="text-secondary opacity-7">Thao tác</th>
               </tr>
@@ -40,6 +41,9 @@
                 <td  class="ps-4">{{i+1}}</td>
                 <td>{{item.title}}</td>
                 <td>{{item.video}}</td>
+                <td>
+                  <img src="https://i.ytimg.com/vi/{{ item.link_id }}/mqdefault.jpg"class="bg2"style=" object-fit: cover ; width: 150px;height: 100px; ">
+                </td>
                 <td>{{item.description}}</td>
                 <!-- <td>{{item.title}}</td> -->
                 <!-- <td [innerHTML]="item.description" ></td> -->
@@ -112,7 +116,7 @@
           </div>
 
           <div class="form-group mt-4">
-            <h6 for="description">Mô tả danh mục</h6>
+            <h6 for="description">Mô tả</h6>
             <ckeditor formControlName="description"></ckeditor>
             <!-- <input type="text" class="form-control" formControlName="price"> -->
           </div>
@@ -187,7 +191,7 @@
 
 <!-- Modal delete -->
 <div class="modal fade" id="Modal_delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa video ?</h1>
