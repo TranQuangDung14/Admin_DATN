@@ -110,36 +110,37 @@ export class PostComponent implements OnInit {
     }
   }
   resetForm() {
-    this.from_post_edit.reset();
+    // this.from_post_edit.reset();
     this.from_post.reset();
 
   }
 
   previewImage: any ='';
-  from_post_edit: FormGroup = new FormGroup({
-    // id: new FormControl(),
-    type_post_id: new FormControl('', Validators.required),
-    staff_id: new FormControl(''),
-    title: new FormControl('', Validators.required),
-    hashtag: new FormControl('', Validators.required),
-    content: new FormControl(''),
-    image: new FormControl('', Validators.required),
-  });
+  // from_post_edit: FormGroup = new FormGroup({
+  //   // id: new FormControl(),
+  //   type_post_id: new FormControl('', Validators.required),
+  //   staff_id: new FormControl(''),
+  //   title: new FormControl('', Validators.required),
+  //   hashtag: new FormControl('', Validators.required),
+  //   content: new FormControl(''),
+  //   image: new FormControl('', Validators.required),
+  // });
 
   // edit
-  onImagePicked(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    this.from_post_edit.patchValue({ image: file });
-    // this.from_post_edit.value.image.updateValueAndValidity();
+  // tạm thời sau fix
+  // onImagePicked(event: Event): void {
+  //   const file = (event.target as HTMLInputElement).files?.[0];
+  //   this.from_post_edit.patchValue({ image: file });
+  //   // this.from_post_edit.value.image.updateValueAndValidity();
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.previewImage = reader.result;
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     this.previewImage = reader.result;
+  //   };
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
   get_id(id: number) {
     //  this.id = this._router.snapshot.params['id'];
@@ -147,14 +148,14 @@ export class PostComponent implements OnInit {
     console.log('id', id);
     this.admin.get_posts(id).subscribe((data) => {
       // console.log('1',data)
-      this.from_post_edit = new FormGroup({
+      this.from_post = new FormGroup({
         type_post_id: new FormControl(data.type_post_id, Validators.required),
         staff_id: new FormControl(data.staff_id),
         title: new FormControl(data.title),
         hashtag: new FormControl(data.hashtag),
         // content: new FormControl(data.content),
         content: new FormControl(data.content),
-        image: new FormControl(null),
+        // image: new FormControl(null),
         // image: new FormControl(data.image),
       });
       this.previewImage = "http://127.0.0.1:8000/storage/"+data.image;
@@ -163,20 +164,20 @@ export class PostComponent implements OnInit {
   }
 
   onEdit() {
-    if (this.from_post_edit.valid) {
-      const formData = new FormData();
-      formData.append('type_post_id', this.from_post_edit.value.type_post_id);
-      formData.append('staff_id', this.from_post_edit.value.staff_id);
-      formData.append('title', this.from_post_edit.value.title);
-      formData.append('hashtag', this.from_post_edit.value.hashtag);
-      formData.append('content', this.from_post_edit.value.content);
-      formData.append('image', this.from_post_edit.value.image);
-      // this.admin.update_posts(this.id, this.from_post.value).subscribe(
+    if (this.from_post.valid) {
+      // const formData = new FormData();
+      // formData.append('type_post_id', this.from_post_edit.value.type_post_id);
+      // formData.append('staff_id', this.from_post_edit.value.staff_id);
+      // formData.append('title', this.from_post_edit.value.title);
+      // formData.append('hashtag', this.from_post_edit.value.hashtag);
+      // formData.append('content', this.from_post_edit.value.content);
+      // formData.append('image', this.from_post_edit.value.image);
+      this.admin.update_posts(this.id, this.from_post.value).subscribe(
 
-      this.admin.update_posts(this.id, formData).subscribe(
+      // this.admin.update_posts(this.id, formData).subscribe(
         (data) => {
           // this.router.navigate(['/brands']);
-          this.from_post_edit.reset();
+          this.from_post.reset();
           // console.log(data);
           this.get_all_post();
           this.toastr.success('Cập nhật thành công!');

@@ -134,7 +134,7 @@
 <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form action="" method="POST" [formGroup]="from_post_edit" (ngSubmit)="onEdit()">
+      <form action="" method="POST" [formGroup]="from_post" (ngSubmit)="onEdit()">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa Loại bài viết</h1>
           <button type="button" class="btn-close" (click)="resetForm()" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -168,7 +168,7 @@
             </div>
               <div class="col-6 form-group">
                 <h6 for="description">Ảnh<span style="color: red;">*</span></h6>
-                <input formControlName="image" type="file" id="image" (change)="onImagePicked($event)" />
+                <!-- <input formControlName="image" type="file" id="image" (change)="onImagePicked($event)" /> -->
                 <img *ngIf="previewImage" style="width: 150px;" [src]="previewImage" alt="Image preview" />
 
               </div>
