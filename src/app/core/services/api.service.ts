@@ -41,7 +41,7 @@ export class ApiService {
   // }
 
   login(data: any) {
-    return this._http.post<any>(this.API_URL + 'login', data).pipe(
+    return this._http.post<any>(this.API_URL + 'staff-login', data).pipe(
       tap((respose: any) => {
         console.log('vao');
         this._islog.next(true);

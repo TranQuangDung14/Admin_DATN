@@ -26,6 +26,7 @@
               <tr>
                 <th class="text-secondary opacity-7">STT</th>
                 <th class="text-secondary opacity-7">Tên sản phẩm</th>
+                <th class="text-secondary opacity-7">giá tiền</th>
                 <th class="text-secondary opacity-7">Ảnh</th>
                 <th class="text-secondary opacity-7">Loại sản phẩm</th>
                 <th class="text-secondary opacity-7">Số lượng</th>
@@ -37,13 +38,14 @@
                 *ngFor="let item of product|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
                 <td>{{item.name}}</td>
+                <td>{{item.default_price}}</td>
                 <!-- <td>
                   <div *ngFor="let image of product[0].images">
                     <img style="width: 80px; height: 80px" [src]="'http://127.0.0.1:8000/storage/image/product/' + image.image">
                 </div>
 
                 </td> -->
-                <td><img [src]="'http://127.0.0.1:8000/storage/image/product/'+item.images?.[0]?.image" alt="" style="width: 80px; height: 80px"></td>
+                <td><img [src]="'http://127.0.0.1:8000/storage/image/product/'+item.images?.[0]?.image" alt="" style=" width: 150px;height: 100px;"></td>
                 <td >{{ item.category.name}}</td>
                 <td>{{item.quantity}}</td>
                 <td>

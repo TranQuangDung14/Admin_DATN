@@ -19,6 +19,9 @@ export class PostComponent implements OnInit {
   post: any;
   selectedFile: File;
   type_post: any;
+
+  // lưu tên người đăng bài
+  // user:any;
   //phân trang
   // POSTS: any;
   page: number = 1;
@@ -57,7 +60,8 @@ export class PostComponent implements OnInit {
   get_all_post() {
     this.admin.get_all_posts().subscribe(
       (data: any) => {
-        this.post = data.posts_all;
+        // this.user =data.user();
+        this.post = data.posts;
         this.type_post = data.type_post;
         console.log(this.post);
       },

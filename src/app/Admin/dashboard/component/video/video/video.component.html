@@ -40,11 +40,13 @@
                 *ngFor="let item of video|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
                 <td>{{item.title}}</td>
-                <td>{{item.video}}</td>
+                <td >{{item.video| slice:0:25}}...</td>
+
                 <td>
                   <img src="https://i.ytimg.com/vi/{{ item.link_id }}/mqdefault.jpg"class="bg2"style=" object-fit: cover ; width: 150px;height: 100px; ">
                 </td>
-                <td>{{item.description}}</td>
+                <!-- <td>{{item.description}}</td> -->
+                <td [innerHTML]="item.description" ></td>
                 <!-- <td>{{item.title}}</td> -->
                 <!-- <td [innerHTML]="item.description" ></td> -->
                 <td>
