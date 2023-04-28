@@ -60,7 +60,7 @@ export class ApiService {
     });
   }
   register(data: any): Observable<any> {
-    return this._http.post<any>(this.API_URL + 'register_customer', data);
+    return this._http.post<any>(this.API_URL + 'register_staff', data);
   }
 
   getalldashboard(): Observable<any> {
