@@ -35,6 +35,7 @@ import { PostComponent } from './dashboard/component/post/post/post.component';
 import { Type_postComponent } from './dashboard/component/post/type_post/type_post.component';
 import { TypeVideoComponent } from './dashboard/component/video/type-video/type-video.component';
 import { VideoComponent } from './dashboard/component/video/video/video.component';
+import { Import_ordersComponent } from './dashboard/component/warehouse/import_orders/import_orders.component';
 
 const router_home:Routes=[
   {
@@ -95,6 +96,11 @@ const router_home:Routes=[
     {
       path:"Warehouse-update",
       component:Warehouse_updateComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"Iiport-orders",
+      component:Import_ordersComponent,
       canActivate: [AuthGuardGuard],
     },
     {
@@ -169,6 +175,7 @@ const router_home:Routes=[
     Type_postComponent,
     TypeVideoComponent,
     VideoComponent,
+    Import_ordersComponent
 
 
 

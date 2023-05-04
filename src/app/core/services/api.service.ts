@@ -689,5 +689,26 @@ export class ApiService {
       }
     );
   }
-
+//nhập kho
+get_all_import_orders(): Observable<any> {
+  return this._http.get<any>(this.API_URL + 'import-order/', {
+    headers: {
+      Authorization: this.code_tokens
+    }
+  });
+}
+create_import_order(data:any): Observable<any> {
+  return this._http.post<any>(this.API_URL + 'import-order/',data, {
+    headers: {
+      Authorization: this.code_tokens
+    }
+  })
+}
+get_import_order(id: number): Observable<any> {
+  return this._http.get<any>(this.API_URL + 'import-order/' + id, {
+    headers: {
+      Authorization: this.code_tokens
+    }
+  })
+}
 }
