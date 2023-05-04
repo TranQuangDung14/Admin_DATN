@@ -99,7 +99,7 @@ const router_home:Routes=[
       canActivate: [AuthGuardGuard],
     },
     {
-      path:"Iiport-orders",
+      path:"Import-orders",
       component:Import_ordersComponent,
       canActivate: [AuthGuardGuard],
     },

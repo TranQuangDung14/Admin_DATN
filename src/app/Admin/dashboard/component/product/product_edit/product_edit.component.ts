@@ -86,22 +86,6 @@ export class Product_editComponent implements OnInit {
       }
     }
 
-    // remove existing images that are not in the current selection
-    // if (this.product && this.product.images) {
-    //   for (let i = 0; i < this.product.images.length; i++) {
-    //     const existingImage = this.product.images[i];
-    //     if (
-     //     // !this.imageFiles.some((file) => file.name === existingImage.filename)
-    //       // console.log('file',file.name)
-    //     ) {
-    //       // formData.append(`existing_images[${i}]`, this.product.images[i]);
-    //       // formData.append(`existing_images[${i}][_destroy]`, '1');
-    //       // formData.append(`existing_images[${i}][filename]`, existingImage.filename);
-    //       formData.append(`existing_images[${i}][id]`, existingImage.id);
-    //       formData.append(`existing_images[${i}][filename]`, existingImage.filename);
-    //     }
-    //   }
-    // }
     formData.forEach((value, key) => {
       console.log('?', key, value);
     });
