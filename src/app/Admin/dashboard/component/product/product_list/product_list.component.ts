@@ -69,6 +69,7 @@ export class Product_listComponent implements OnInit {
         this.toastr.success('Xóa thành công!', );
       },
       (error) => {
+        console.log('âhah',error);
         this.toastr.error('Xóa thất bại!');
       });
     }

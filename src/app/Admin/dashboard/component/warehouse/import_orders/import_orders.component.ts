@@ -91,12 +91,12 @@ export class Import_ordersComponent implements OnInit {
       //  this.id = this._router.snapshot.params['id'];
       this.id =id;
     this.admin.get_import_order(id).subscribe(data => {
-      console.log('1',data.import_orders_details[0].product_id)
+      console.log('1',data.import_order.product_id)
 
       this.import_order_from = new FormGroup({
-        product_id: new FormControl(data.import_orders_details.product_id, Validators.required),
-        quantity: new FormControl(data.quantity, Validators.required),
-        price: new FormControl(data.price, Validators.required),
+        product_id: new FormControl(data.import_order.product_id, Validators.required),
+        quantity: new FormControl(data.import_order.quantity, Validators.required),
+        price: new FormControl(data.import_order.price, Validators.required),
       });
       // this.isEdit = true; // Xác định là chức năng sửa
     })
