@@ -38,7 +38,8 @@
                 *ngFor="let item of product|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
                 <td>{{item.name}}</td>
-                <td>{{item.default_price}}</td>
+                <td>{{item.default_price|currency:'VND' }}</td>
+                <!-- {{detail_price |currency:'VND' }} -->
                 <!-- <td>
                   <div *ngFor="let image of product[0].images">
                     <img style="width: 80px; height: 80px" [src]="'http://127.0.0.1:8000/storage/image/product/' + image.image">
