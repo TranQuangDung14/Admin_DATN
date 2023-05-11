@@ -36,6 +36,7 @@ import { Type_postComponent } from './dashboard/component/post/type_post/type_po
 import { TypeVideoComponent } from './dashboard/component/video/type-video/type-video.component';
 import { VideoComponent } from './dashboard/component/video/video/video.component';
 import { Import_ordersComponent } from './dashboard/component/warehouse/import_orders/import_orders.component';
+import { VoucherComponent } from './dashboard/component/voucher/voucher.component';
 
 const router_home:Routes=[
   {
@@ -133,6 +134,11 @@ const router_home:Routes=[
       component:VideoComponent,
       canActivate: [AuthGuardGuard],
     },
+    {
+      path:"voucher",
+      component:VoucherComponent,
+      canActivate: [AuthGuardGuard],
+    },
 
     // {
     //   path:"chi-tiet-san-pham/:id",
@@ -175,7 +181,8 @@ const router_home:Routes=[
     Type_postComponent,
     TypeVideoComponent,
     VideoComponent,
-    Import_ordersComponent
+    Import_ordersComponent,
+    VoucherComponent,
 
 
 

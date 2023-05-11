@@ -109,7 +109,7 @@ export class CategoryComponent implements OnInit {
       this.category_product_from.reset();
       // console.log(data);
       this.get_all_category_product();
-      this.toastr.success('Cập nhật thành công!', );
+      this.toastr.success('Cập nhật thành công!' );
     },
     (error) => {
       this.toastr.error('cập nhật thất bại!');

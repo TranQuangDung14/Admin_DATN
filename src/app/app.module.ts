@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CategoryComponent } from './Admin/dashboard/component/category/category.component';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 // import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { CurrencyPipe } from '@angular/common';
     // SharedModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

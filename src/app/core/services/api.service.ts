@@ -43,12 +43,12 @@ export class ApiService {
   login(data: any) {
     return this._http.post<any>(this.API_URL + 'staff-login', data).pipe(
       tap((respose: any) => {
-        console.log('vao');
+        // console.log('vao');
         this._islog.next(true);
         localStorage.setItem(this.TOKEN_NAME, respose.access_token);
 
-        console.log(respose.access_token);
-        console.log(this.TOKEN_NAME, respose.access_token);
+        // console.log(respose.access_token);
+        // console.log(this.TOKEN_NAME, respose.access_token);
       })
     );
   }
@@ -671,6 +671,44 @@ export class ApiService {
   }
   delete_import_order(id: number): Observable<any> {
     return this._http.delete<any>(this.API_URL + 'import-order/' + id, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+
+
+  //voucher
+  get_all_voucher(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'voucher/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  create_voucher(data: any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'voucher/', data, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  get_voucher(id: number): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'voucher/' + id, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  update_voucher(id: number, data: any): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'voucher/' + id, data, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  delete_voucher(id: number): Observable<any> {
+    return this._http.delete<any>(this.API_URL + 'voucher/' + id, {
       headers: {
         Authorization: this.code_tokens,
       },
