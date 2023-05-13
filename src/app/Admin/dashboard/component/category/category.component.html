@@ -49,7 +49,6 @@
                     (click)="openModal(cate.id)">
                     <i class="fas fa-trash"></i>
                   </button>
-
                 </td>
               </tr>
             </tbody>
@@ -81,7 +80,6 @@
                 id="example-input-group">
             </div>
           </div>
-
           <div class="form-group mt-3">
             <h6 for="description">Mô tả danh mục</h6>
             <ckeditor formControlName="description"></ckeditor>
@@ -96,7 +94,6 @@
     </div>
   </div>
 </div>
-
 <!-- Modal edit -->
 <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -127,7 +124,6 @@
     </div>
   </div>
 </div>
-
 <!-- Modal delete -->
 <div class="modal fade" id="Modal_delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
@@ -143,8 +139,6 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
         <!-- <button type="button" class="btn btn-danger" (click)="onDelete(id)">Xóa</button> -->
         <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(categoryId)">Xóa</button>
-
-
       </div>
     </div>
   </div>

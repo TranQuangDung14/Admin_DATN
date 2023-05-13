@@ -40,6 +40,7 @@ export class Product_listComponent implements OnInit {
   ngOnInit() {
     this.send_title();
     this.get_all_product();
+    // this.get_cart();
   }
 
     // gửi title đi
@@ -90,5 +91,8 @@ export class Product_listComponent implements OnInit {
       this.page = 1;
       this.get_all_product();
     }
+
+
+
 }
 
