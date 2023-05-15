@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +20,7 @@ export class Import_ordersComponent implements OnInit {
   id: number;
   // isEdit: boolean = true;
   searchText:any;
-
+  // voucher :any;
   //phân trang
   // POSTS: any;
   page: number = 1;
@@ -33,7 +34,8 @@ export class Import_ordersComponent implements OnInit {
     private data_service: ComponentService,
     private toastr: ToastrService,
     private router :Router,
-    private _router: ActivatedRoute
+    private _router: ActivatedRoute,
+    private datePipe: DatePipe
   ) { }
 
   import_order_from: FormGroup = new FormGroup({
@@ -57,9 +59,14 @@ export class Import_ordersComponent implements OnInit {
   get_all_import_order() {
     this.admin.get_all_import_orders().subscribe(
       (data: any) => {
-        this.import_order = data.import_order;
+        this.import_order = data.import_order.map((import_order: any) => {
+          import_order.updated_at = this.datePipe.transform(import_order.updated_at, 'HH:mm:ss dd-MM-yyyy');
+          // voucher.end_date = this.datePipe.transform(voucher.end_date, ' HH:mm:ss dd-MM-yyyy');
+          return import_order;
+        });
+        // this.import_order = data.import_order;
         this.product = data.product;
-        // console.log('data',this.import_order)
+        console.log('data',this.import_order)
       },
       (error) => {
         console.log(error);
