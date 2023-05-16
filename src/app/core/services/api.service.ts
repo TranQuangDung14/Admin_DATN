@@ -24,7 +24,7 @@ export class ApiService {
     //
     this._islog.next(!!this.token);
   }
-  // hàm kiểm tra
+  // hàm kiểm tra người dùng có đăng nhập hay không!
   isLoggedIn() {
     const token = localStorage.getItem('profanis_auth');
     return token !== null;
