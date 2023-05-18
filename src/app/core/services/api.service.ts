@@ -277,34 +277,53 @@ export class ApiService {
       },
     });
   }
-  create_order(data: any): Observable<any> {
-    return this._http.post<any>(this.API_URL + 'order/', data, {
+  get_order_id(id: number): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'order/'+ id, {
       headers: {
         Authorization: this.code_tokens,
       },
     });
   }
-  get_order(id: number): Observable<any> {
-    return this._http.get<any>(this.API_URL + 'order/' + id, {
+  get_order_processing(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'order_processing/', {
       headers: {
         Authorization: this.code_tokens,
       },
     });
   }
-  update_order(id: number, data: any): Observable<any> {
-    return this._http.put<any>(this.API_URL + 'order/' + id, data, {
+
+  // const headers = { Authorization: this.code_tokens };
+
+
+  // create_order(data: any): Observable<any> {
+  //   return this._http.post<any>(this.API_URL + 'order/', data, {
+  //     headers: {
+  //       Authorization: this.code_tokens,
+  //     },
+  //   });
+  // }
+  // get_order(id: number): Observable<any> {
+  //   return this._http.get<any>(this.API_URL + 'order/' + id, {
+  //     headers: {
+  //       Authorization: this.code_tokens,
+  //     },
+  //   });
+  // }
+  update_order_status(id: number, status: number): Observable<any> {
+    const body = { status: status };
+    return this._http.put<any>(this.API_URL + 'update_status_order/' + id, body, {
       headers: {
         Authorization: this.code_tokens,
       },
     });
   }
-  delete_order(id: number): Observable<any> {
-    return this._http.delete<any>(this.API_URL + 'order/' + id, {
-      headers: {
-        Authorization: this.code_tokens,
-      },
-    });
-  }
+  // delete_order(id: number): Observable<any> {
+  //   return this._http.delete<any>(this.API_URL + 'order/' + id, {
+  //     headers: {
+  //       Authorization: this.code_tokens,
+  //     },
+  //   });
+  // }
 
   //posts
   get_all_posts(): Observable<any> {

@@ -37,6 +37,10 @@ import { TypeVideoComponent } from './dashboard/component/video/type-video/type-
 import { VideoComponent } from './dashboard/component/video/video/video.component';
 import { Import_ordersComponent } from './dashboard/component/warehouse/import_orders/import_orders.component';
 import { VoucherComponent } from './dashboard/component/voucher/voucher.component';
+import { Order_processingComponent } from './dashboard/component/order_/order_processing/order_processing.component';
+import { Order_cancelComponent } from './dashboard/component/order_/order_cancel/order_cancel.component';
+import { Order_successComponent } from './dashboard/component/order_/order_success/order_success.component';
+import { Orders_are_being_deliveredComponent } from './dashboard/component/order_/orders_are_being_delivered/orders_are_being_delivered.component';
 
 const router_home:Routes=[
   {
@@ -139,6 +143,26 @@ const router_home:Routes=[
       component:VoucherComponent,
       canActivate: [AuthGuardGuard],
     },
+    {
+      path:"order_processing",
+      component:Order_processingComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"order_cancel",
+      component:Order_cancelComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"order_success",
+      component:Order_successComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"orders_are_being_delivered",
+      component:Orders_are_being_deliveredComponent,
+      canActivate: [AuthGuardGuard],
+    },
 
     // {
     //   path:"chi-tiet-san-pham/:id",
@@ -183,7 +207,10 @@ const router_home:Routes=[
     VideoComponent,
     Import_ordersComponent,
     VoucherComponent,
-
+    Order_processingComponent,
+    Order_cancelComponent,
+    Order_successComponent,
+    Orders_are_being_deliveredComponent,
 
 
   ],

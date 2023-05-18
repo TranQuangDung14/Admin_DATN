@@ -44,6 +44,56 @@ export class OrderComponent implements OnInit {
     this.send_title();
     this.getall_order();
   }
+ getStatusText(status: number): string {
+  switch (status) {
+    case 1:
+      return 'Đang chờ xử lý';
+    case 2:
+      return 'Đã xác nhận đơn hàng';
+    case 3:
+      return 'Đã xuất hàng';
+    case 4:
+      return 'Hoàn thành';
+    case 5:
+      return 'Hủy đơn';
+    default:
+      return '';
+  }
+}
+getStatusStyle(status: number): any {
+  let background = '';
+  let color = '';
+
+  switch (status) {
+    case 1:
+      background = 'lightblue';
+      color = 'black';
+      break;
+    case 2:
+      background = 'lightgreen';
+      color = 'black';
+      break;
+    case 3:
+      background = 'lightyellow';
+      color = 'black';
+      break;
+    case 4:
+      background = 'lightgrey';
+      color = 'black';
+      break;
+    case 5:
+      background = 'lightcoral';
+      color = 'white';
+      break;
+    default:
+      break;
+  }
+
+  return { 'background-color': background, color: color };
+}
+
+
+
 
     // gửi title đi
     send_title() {
@@ -56,7 +106,7 @@ export class OrderComponent implements OnInit {
           console.log('order',data);
           // console.log('product',data.product);
           // console.log('customer',data.customer);
-          this.order = data.order;
+          this.order = data.data;
           // this.product = data.product;
           // this.customer = data.customer;
 

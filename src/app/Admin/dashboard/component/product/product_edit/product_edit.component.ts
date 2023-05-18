@@ -66,6 +66,7 @@ export class Product_editComponent implements OnInit {
     );
   }
 
+  
   onSubmit() {
     const formData = new FormData();
     formData.append('category_id', this.productForm.value.category_id);
@@ -92,22 +93,12 @@ export class Product_editComponent implements OnInit {
     console.log(this.productForm.value);
     this.admin.update_product(this.id, formData).subscribe(
       (res) => {
-        // console.log('vào đây r', res);
-        // formData.forEach((value, key) => {
-        //   console.log(key, value);
-        // });
         // do something with the response
         this.toastr.success('Cập nhật thành công!', );
         this.router.navigate(['/product']); // navigate to products page after successful update
       },
       (error) => {
         this.toastr.error('Cập nhật thất bại!', );
-        // formData.forEach((value, key) => {
-        //   console.log(key, value);
-        // }),
-        //   console.log('lỗi đấy', error);
-
-        // do something with the error
       }
     );
   }

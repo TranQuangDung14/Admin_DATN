@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       const emailControl = this.form.get('email');
       if (emailControl && emailControl.hasError('email')) {
-        this.toastr.error('Email không hợp lệ', 'Sao m ngu thế hả con !');
+        this.toastr.error('Email không hợp lệ', 'Sai email kìa!');
       } else {
         this.toastr.error('Vui lòng nhập đầy đủ thông tin', 'Lỗi');
       }

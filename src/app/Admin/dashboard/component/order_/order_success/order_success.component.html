@@ -4,7 +4,7 @@
       <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
           <div class="col-6">
-            <h6 class="text-white text-capitalize ps-3">Quản lý đơn hàng</h6>
+            <h6 class="text-white text-capitalize ps-3">Quản lý đơn chưa xử lý</h6>
 
           </div>
           <div class="col-6 ">
@@ -12,10 +12,10 @@
                   <div class="flex-grow-1 me-2">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"placeholder=" Tìm kiếm đơn hàng">
                   </div>
-                  <!-- <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
                   data-bs-target="#modal_add">
                   Thêm mới
-                </button> -->
+                </button>
                 </div>
 
 
@@ -41,28 +41,17 @@
                 <td  class="ps-4">{{i+1}}</td>
                 <td>{{item.code_order}}</td>
                 <td>{{item.receiver_name}}</td>
-                <!-- <td [ngClass]="getStatusClass(item.status)">{{getStatusText(item.status)}}</td> -->
-                <!-- <td>{{getStatusText(item.status)}}</td> -->
-                <!-- <td [ngStyle]="getStatusStyle(item.status)">
-                  <div class="status-content">{{ getStatusText(item.status) }}</div>
-                </td> -->
+                <td >{{getStatusText(item.status)}}</td>
                 <td>
-                  <div class="status-content" [ngStyle]="getStatusStyle(item.status)">{{ getStatusText(item.status) }}</div>
-                </td>
-                <!-- <td [ngClass]="getStatusClass(item.status)">
-                  <span [innerHTML]="getStatusText(item.status)"></span>
-                </td> -->
-
-                <td>
-                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
+                  <!-- <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
                     data-bs-target="#modal_edit">
                     Xem chi tiết đơn hàng
-                  </button>
+                  </button> -->
+                  <button  class="btn btn-primary" (click)="update_status_orders(item.id)"> Xác nhận đơn </button>
+                  <!-- <button  data-bs-toggle="modal" data-bs-target="#Modal_delete"
+                   >
 
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
-                    (click)="openModal(item.id)">
-                    Xóa
-                  </button>
+                  </button> -->
 
                 </td>
               </tr>
