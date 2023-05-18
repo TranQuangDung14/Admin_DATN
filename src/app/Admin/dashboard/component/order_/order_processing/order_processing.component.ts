@@ -82,16 +82,38 @@ from: FormGroup = new FormGroup({
   // id: new FormControl(),
   status: new FormControl(2, Validators.required),
 });
-// get_id(id: number)
-//   {
-//       //  this.id = this._router.snapshot.params['id'];
-//       this.id =id;
-//     this.admin.get_category(id).subscribe(data => {
-//       this.from = new FormGroup({
-//         status: new FormControl(2, Validators.required),
-//       });
-//     })
-//   }
+getStatusStyle(status: number): any {
+  let background = '';
+  let color = '';
+
+  switch (status) {
+    case 1:
+      background = 'lightblue';
+      color = 'black';
+      break;
+    case 2:
+      background = 'lightgreen';
+      color = 'black';
+      break;
+    case 3:
+      background = 'lightyellow';
+      color = 'black';
+      break;
+    case 4:
+      background = 'lightgrey';
+      color = 'black';
+      break;
+    case 5:
+      background = 'lightcoral';
+      color = 'white';
+      break;
+    default:
+      break;
+  }
+
+  return { 'background-color': background, color: color };
+}
+
 
 status:number=2;
 // id: number;
@@ -111,11 +133,13 @@ update_status_orders(id: number) {
   );
 }
 order_detail:any;
+order_product:any;
 get_order_id(id:number){
   this.id =id;
   this.admin.get_order_id(this.id).subscribe(data=>{
     this.order_detail=data.data;
-    console.log(this.order_detail);
+    this.order_product=data.data.order_details;
+    console.log('ddd',this.order_product);
   })
 }
 
