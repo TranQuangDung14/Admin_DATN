@@ -52,9 +52,9 @@ export class Order_processingComponent implements OnInit {
     case 1:
       return 'Đang chờ xử lý';
     case 2:
-      return '<span style="background-color: red;">Đã xác nhận đơn hàng</span>';
+      return 'Đã xác nhận đơn hàng';
     case 3:
-      return 'Đã xuất hàng';
+      return 'Đã xuất hàng - đang giao';
     case 4:
       return 'Hoàn thành';
     case 5:
@@ -88,19 +88,25 @@ getStatusStyle(status: number): any {
 
   switch (status) {
     case 1:
-      background = 'lightblue';
+      // background = 'SandyBrown';
+      background = 'lightgrey';
       color = 'black';
+      // background = 'lightblue';
+      // color = 'black';
       break;
     case 2:
-      background = 'lightgreen';
+      background = 'rgb(255 250 205)';
+      // background = 'lightgreen';
       color = 'black';
       break;
     case 3:
-      background = 'lightyellow';
+      background = 'rgb(178 223 238)';
+      // background = 'lightyellow';
       color = 'black';
       break;
     case 4:
-      background = 'lightgrey';
+      background = 'lightgreen';
+      // background = 'lightgrey';
       color = 'black';
       break;
     case 5:

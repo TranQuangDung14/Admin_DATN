@@ -269,7 +269,7 @@ export class ApiService {
     });
   }
 
-  //order
+  //toàn bộ đơn hàng
   get_all_order(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'order/', {
       headers: {
@@ -277,6 +277,7 @@ export class ApiService {
       },
     });
   }
+  // chi tiết đơn hàng
   get_order_id(id: number): Observable<any> {
     return this._http.get<any>(this.API_URL + 'order/'+ id, {
       headers: {
@@ -284,8 +285,34 @@ export class ApiService {
       },
     });
   }
+  // đơn đợi xử lý
   get_order_processing(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'order_processing/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  // đơn đang giao
+  get_orders_are_being_delivered(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'orders_are_being_delivered/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  // đơn giao thành công
+  get_order_success(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'order_success/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+
+  // đơn hủy
+  get_order_cancel(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'order_cancel/', {
       headers: {
         Authorization: this.code_tokens,
       },
