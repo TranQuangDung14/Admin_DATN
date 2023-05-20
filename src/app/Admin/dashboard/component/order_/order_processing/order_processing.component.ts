@@ -121,11 +121,12 @@ getStatusStyle(status: number): any {
 }
 
 
-status:number=2;
+status:number;
 // id: number;
 // cập nhật trạng thái
-update_status_orders(id: number) {
+update_status_orders(id: number,status:number) {
   this.id = id;
+  this.status=status;
   console.log('status', this.status);
   this.admin.update_order_status(this.id, this.status).subscribe(
     (data) => {
@@ -148,7 +149,9 @@ get_order_id(id:number){
     console.log('ddd',this.order_product);
   })
 }
-
+openModal(id: number): void {
+  this.id = id; // lưu lại id vào một biến trong component
+}
  //phân trang
  ontableDataChange(event: any) {
    this.page = event;

@@ -17,7 +17,7 @@ export class Orders_are_being_deliveredComponent implements OnInit {
  customer: any;
 
  title = 'Quản lý đơn hàng đang vận chuyển';
- categoryId: any;
+//  categoryId: any;
  id: number;
  // isEdit: boolean = true;
  searchText: any;
@@ -116,23 +116,25 @@ getStatusStyle(status: number): any {
 }
 
 
-status:number=2;
-// id: number;
+status:number;
+
 // cập nhật trạng thái
-// update_status_orders(id: number) {
-//   this.id = id;
-//   console.log('status', this.status);
-//   this.admin.update_order_status(this.id, this.status).subscribe(
-//     (data) => {
-//       this.getall_order();
-//       this.toastr.success('Xác nhận đơn hàng thành công!');
-//     },
-//     (error) => {
-//       console.log('error', error);
-//       this.toastr.error('Cập nhật thất bại!');
-//     }
-//   );
-// }
+update_status_orders(id: number,status:number) {
+  this.id = id;
+  this.status=status;
+  // this
+  console.log('id', this.id);
+  this.admin.update_order_status(this.id, this.status).subscribe(
+    (data) => {
+      this.getall_order();
+      this.toastr.success('Xác nhận đơn hàng thành công!');
+    },
+    (error) => {
+      console.log('error', error);
+      this.toastr.error('Cập nhật thất bại!');
+    }
+  );
+}
 order_detail:any;
 order_product:any;
 // Xem chi tiết đơn hàng
@@ -144,7 +146,9 @@ get_order_id(id:number){
     console.log('ddd',this.order_product);
   })
 }
-
+openModal(id: number): void {
+  this.id = id; // lưu lại id vào một biến trong component
+}
  //phân trang
  ontableDataChange(event: any) {
    this.page = event;

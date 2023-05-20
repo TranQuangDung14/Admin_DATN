@@ -33,7 +33,7 @@
                 <th class="text-secondary opacity-7">Tên Người nhận</th>
                 <th class="text-secondary opacity-7">Trạng thái</th>
                 <th class="text-secondary opacity-7">Xác nhận đơn</th>
-                <th class="text-secondary opacity-7">Thao tác</th>
+                <th class="text-secondary opacity-7">Hủy đơn</th>
               </tr>
             </thead>
             <tbody >
@@ -46,14 +46,23 @@
                   <div class="status-content" [ngStyle]="getStatusStyle(item.status)">{{ getStatusText(item.status) }}</div>
                 </td>
                 <td>
-                  <button  class="btn btn-success me-2" (click)="update_status_orders(item.id)"title="Xác nhận đơn"> <i style="font-size: 20px;" class="far fa-check-circle"></i> </button>
+                  <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#Modal_success" title="Xác nhận đơn" (click)="openModal(item.id)"> <i style="font-size: 20px;" class="far fa-check-circle"></i> </button>
+                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_order_id(item.id)"
+                  data-bs-target="#model_detail"  title="Xem chi tiết đơn hàng">
+                  <i style="font-size: 20px;" class="fas fa-eye"></i>
+                </button>
+                  <!-- <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#Modal_success" title="Đã hoàn thành"
+                  (click)="openModal(item.id)">
+                  <i  style="font-size: 20px;" class="fas fa-check"></i>
+                </button> -->
                 </td>
                 <td>
-                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_order_id(item.id)"
-                    data-bs-target="#model_detail"  title="Xem chi tiết đơn hàng">
-                    <i style="font-size: 20px;" class="fas fa-info"></i>
-                  </button>
-                  <button  class="btn btn-primary" title="Hủy đơn"><i style="font-size: 20px;" class="far fa-window-close"></i></button>
+
+                  <!-- <button  class="btn btn-primary" title="Hủy đơn" ><i style="font-size: 20px;" class="far fa-window-close"></i></button> -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_cancel" title="Hủy đơn"
+                  (click)="openModal(item.id)">
+                  <i style="font-size: 20px;" class="far fa-window-close"></i>
+                </button>
                   <!-- <button  data-bs-toggle="modal" data-bs-target="#Modal_delete"
                    >
 
@@ -145,3 +154,41 @@
   </div>
 </div>
 
+<!-- modal xác nhận -->
+<div class="modal fade" id="Modal_success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Xác nhận đơn hàng!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Xác nhận đơn hàng
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="update_status_orders(id,2)">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal hủy -->
+<div class="modal fade" id="Modal_cancel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Hủy đơn hàng</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn hủy đơn hàng không
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <!-- <button type="button" class="btn btn-danger" (click)="onDelete(id)">Xóa</button> -->
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="update_status_orders(id,5)">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+</div>
