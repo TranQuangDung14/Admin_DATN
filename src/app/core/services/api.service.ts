@@ -723,6 +723,29 @@ export class ApiService {
     });
   }
 
+  //Xuất kho
+  get_all_export_order(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'export-order/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  create_export_order(data: any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'export-order/', data, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  // hiển thị đơn hàng đợi xuất kho
+  get_confirmed_orders(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'confirmed-orders/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
 
   //voucher
   get_all_voucher(): Observable<any> {

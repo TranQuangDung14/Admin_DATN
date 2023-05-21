@@ -41,6 +41,7 @@ import { Order_processingComponent } from './dashboard/component/order_/order_pr
 import { Order_cancelComponent } from './dashboard/component/order_/order_cancel/order_cancel.component';
 import { Order_successComponent } from './dashboard/component/order_/order_success/order_success.component';
 import { Orders_are_being_deliveredComponent } from './dashboard/component/order_/orders_are_being_delivered/orders_are_being_delivered.component';
+import { Export_ordersComponent } from './dashboard/component/warehouse/export_orders/export_orders.component';
 
 const router_home:Routes=[
   {
@@ -106,6 +107,11 @@ const router_home:Routes=[
     {
       path:"Import-orders",
       component:Import_ordersComponent,
+      canActivate: [AuthGuardGuard],
+    },
+    {
+      path:"Export-orders",
+      component:Export_ordersComponent,
       canActivate: [AuthGuardGuard],
     },
     {
@@ -210,6 +216,7 @@ const router_home:Routes=[
     Order_processingComponent,
     Order_cancelComponent,
     Order_successComponent,
+    Export_ordersComponent,
     Orders_are_being_deliveredComponent,
 
 

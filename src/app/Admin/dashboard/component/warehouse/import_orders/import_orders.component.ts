@@ -66,7 +66,7 @@ export class Import_ordersComponent implements OnInit {
         });
         // this.import_order = data.import_order;
         this.product = data.product;
-        console.log('data',this.import_order)
+        console.log('data',data)
       },
       (error) => {
         console.log(error);
