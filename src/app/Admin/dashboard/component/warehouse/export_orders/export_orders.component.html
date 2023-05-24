@@ -70,7 +70,7 @@
 
 
 <!-- Modal add -->
-<div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_add" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="" method="POST" [formGroup]="from" (ngSubmit)="onCreate()">
@@ -89,7 +89,7 @@
           <div class="mb-3 mt-3">
             <label for="example-input-group" class="form-label">Thời gian nhận hàng dự tính<span style="color: red;">*</span></label>
             <div class="input-group input-group-outline">
-              <input type="date" min="0" formControlName="delivery_date" class="form-control"
+              <input type="datetime-local" min="0" formControlName="delivery_date" class="form-control"
                 id="example-input-group" vb>
             </div>
           </div>

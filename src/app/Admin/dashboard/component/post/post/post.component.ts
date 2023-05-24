@@ -63,7 +63,7 @@ export class PostComponent implements OnInit {
         // this.user =data.user();
         this.post = data.posts;
         this.type_post = data.type_post;
-        console.log(this.post);
+        console.log('post',this.post);
       },
       (error) => {
         console.log(error);

@@ -12,10 +12,6 @@
                   <div class="flex-grow-1 me-2">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"placeholder="Nhập mã đơn hàng hoặc người nhận">
                   </div>
-                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
-                  data-bs-target="#modal_add">
-                  Thêm mới
-                </button>
                 </div>
 
 
@@ -155,7 +151,7 @@
 </div>
 
 <!-- modal xác nhận -->
-<div class="modal fade" id="Modal_success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_success" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -174,7 +170,7 @@
 </div>
 
 <!-- Modal hủy -->
-<div class="modal fade" id="Modal_cancel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_cancel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">

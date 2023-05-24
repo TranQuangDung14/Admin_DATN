@@ -128,6 +128,29 @@ export class OrderComponent implements OnInit {
       console.log('ddd', this.order_product);
     });
   }
+  openModal(id: number): void {
+    this.id = id; // lưu lại id vào một biến trong component
+  }
+
+  status:number;
+
+// cập nhật trạng thái
+update_status_orders(id: number,status:number) {
+  this.id = id;
+  this.status=status;
+  // this
+  console.log('id', this.id);
+  this.admin.update_order_status(this.id, this.status).subscribe(
+    (data) => {
+      this.getall_order();
+      this.toastr.success('Thay đổi trạng thái đơn hàng thành công!');
+    },
+    (error) => {
+      console.log('error', error);
+      this.toastr.error('Cập nhật thất bại!');
+    }
+  );
+}
   //phân trang
   ontableDataChange(event: any) {
     this.page = event;

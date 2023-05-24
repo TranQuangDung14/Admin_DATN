@@ -32,7 +32,8 @@
                 <th class="text-secondary opacity-7">Mã đơn hàng</th>
                 <th class="text-secondary opacity-7">Tên Người nhận</th>
                 <th class="text-secondary opacity-7">Trạng thái</th>
-                <th class="text-secondary opacity-7">Thao tác</th>
+                <th class="text-secondary opacity-7">Chi tiết đơn</th>
+                <th class="text-secondary opacity-7">Phục hồi đơn</th>
               </tr>
             </thead>
             <tbody >
@@ -47,14 +48,21 @@
                 <td>
                   <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_order_id(item.id)"
                   data-bs-target="#model_detail" title="Xem chi tiết đơn hàng">
-                  <i class="fas fa-info"></i>
+                  <i  style="font-size: 20px;" class="fas fa-info"></i>
                 </button>
-                  <!-- <button  class="btn btn-primary" (click)="update_status_orders(item.id)"> Xác nhận đơn </button> -->
+                  <!-- <button  class="btn btn-primary" (click)="update_status_orders(item.id)">Khôi phục đơn hàng </button> -->
                   <!-- <button  data-bs-toggle="modal" data-bs-target="#Modal_delete"
                    >
 
                   </button> -->
 
+                </td>
+                <td>
+
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_success" title="Phục hồi đơn"
+                  (click)="openModal(item.id)">
+                  <i   style="font-size: 20px;" class="fa-solid fa-hammer"></i>
+                </button>
                 </td>
               </tr>
             </tbody>
@@ -136,6 +144,24 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
         <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal xác nhận -->
+<div class="modal fade" id="Modal_success" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Phục hồi!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốc phục hồi đơn hàng này!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="update_status_orders(id,1)">Phục hồi</button>
       </div>
     </div>
   </div>

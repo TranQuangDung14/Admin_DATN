@@ -27,6 +27,7 @@
             <thead>
               <tr>
                 <th class="text-secondary opacity-7">STT</th>
+                <th class="text-secondary opacity-7">Nhà cung cấp</th>
                 <th class="text-secondary opacity-7">Tên sản phẩm</th>
                 <th class="text-secondary opacity-7">Số lượng nhập</th>
                 <th class="text-secondary opacity-7">giá nhập</th>
@@ -39,6 +40,7 @@
               <tr
                 *ngFor="let item of import_order|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
+                <td>{{item.name_supplier}}</td>
                 <td>{{item.name_product}}</td>
                 <td>{{item.quantity}}</td>
                 <td>{{item.price}}</td>
@@ -69,7 +71,7 @@
 </div>
 
 <!-- Modal add -->
-<div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_add" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="" method="POST" [formGroup]="import_order_from" (ngSubmit)="onCreate()">
@@ -78,6 +80,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div class="form-group">
+            <h6 for="category_id">Nhà cung cấp</h6>
+            <select class="form-select" formControlName="supplier_id">
+              <option value="" selected disabled>-- Chọn nhà cung cấp --</option>
+              <option *ngFor="let item of supplier" value="{{ item.id }}">{{ item.name_supplier }}</option>
+            </select>
+          </div>
           <div class="form-group">
             <h6 for="category_id">Sản phẩm</h6>
             <select class="form-select" formControlName="product_id">
@@ -111,7 +120,7 @@
 </div>
 
 <!-- Modal edit -->
-<div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_edit" tabindex="-1"data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="" method="PUT" [formGroup]="import_order_from" (ngSubmit)="onEdit()">
@@ -121,6 +130,13 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
+            <h6 for="category_id">Nhà cung cấp</h6>
+            <select class="form-select" formControlName="supplier_id">
+              <option value="" selected disabled>-- Chọn nhà cung cấp --</option>
+              <option *ngFor="let item of supplier" value="{{ item.id }}">{{ item.name_supplier }}</option>
+            </select>
+          </div>
+          <div class="form-group mb-3 mt-3">
             <h6 for="category_id">Sản phẩm</h6>
             <select class="form-select" formControlName="product_id">
               <option value="" selected disabled>-- Chọn sản phẩm --</option>
@@ -153,7 +169,7 @@
 </div>
 
 <!-- Modal delete -->
-<div class="modal fade" id="Modal_delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_delete" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">

@@ -444,11 +444,7 @@ export class ApiService {
     return this._http.get<any>(this.API_URL + 'product/' + id, {
       headers: {
         Authorization: this.code_tokens,
-        // 'Content-Type': 'multipart/form-data'
       },
-      // {  var formData = new FormData(),
-      //   formData.append('file', this.postForm.value)
-      // }
     });
   }
   // 'Content-Type': 'application/json',
@@ -784,5 +780,12 @@ export class ApiService {
     });
   }
 
-
+// thống kê
+  get_dashboard(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'dashboard/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
 }

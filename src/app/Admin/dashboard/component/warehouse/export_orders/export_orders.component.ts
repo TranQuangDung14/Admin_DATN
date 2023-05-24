@@ -66,6 +66,7 @@ onCreate() {
       // window.location.reload();
     },
     (error) => {
+      console.log('error',error)
       this.toastr.error('Thêm thất bại!');
     });
 }

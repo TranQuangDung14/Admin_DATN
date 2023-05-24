@@ -18,6 +18,7 @@ export class Product_editComponent implements OnInit {
   category_product: any;
   product: any;
   id: number;
+  brand:any;
   images: any;
   data = [];
   constructor(
@@ -36,6 +37,7 @@ export class Product_editComponent implements OnInit {
       // price: ['', Validators..],
       tech_specs: [''],
       category_id: [''],
+      brand_id: [''],
       description: [''],
       // image: [null]
     });
@@ -59,6 +61,7 @@ export class Product_editComponent implements OnInit {
     this.subscription = this.admin.get_all_product().subscribe(
       (data: any) => {
         this.category_product = data.category_product;
+        this.brand = data.brand;
       },
       (error) => {
         console.log(error);
@@ -66,10 +69,11 @@ export class Product_editComponent implements OnInit {
     );
   }
 
-  
+
   onSubmit() {
     const formData = new FormData();
     formData.append('category_id', this.productForm.value.category_id);
+    formData.append('brand_id', this.productForm.value.brand_id);
     formData.append('name', this.productForm.value.name);
     formData.append('default_price', this.productForm.value.default_price);
     formData.append('tech_specs', this.productForm.value.tech_specs);

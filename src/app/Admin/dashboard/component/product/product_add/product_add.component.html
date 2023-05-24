@@ -17,11 +17,21 @@
               <div class="col-6 form-group">
                 <h6 for="category_id">Danh mục sản phẩm</h6>
                 <select class="form-select" formControlName="category_id">
-                  <option value="">-- Chọn danh mục sản phẩm--</option>
+                  <option value=""disabled>-- Chọn danh mục sản phẩm--</option>
                   <option *ngFor="let item of category_product" value="{{ item.id }}">{{ item.name_cate }}</option>
                 </select>
               </div>
               <div class="col-6 form-group">
+                <h6 for="category_id">Thương hiệu sản phẩm</h6>
+                <select class="form-select" formControlName="brand_id">
+                  <option value="" disabled>-- Chọn thương hiệu sản phẩm --</option>
+                  <option *ngFor="let item of brand" value="{{ item.id }}">{{ item.name }}</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="row mt-2">
+              <div class="col-12 form-group">
                 <h6 for="name">Tên sản phẩm</h6>
                 <input type="text" class="form-control" formControlName="name">
               </div>

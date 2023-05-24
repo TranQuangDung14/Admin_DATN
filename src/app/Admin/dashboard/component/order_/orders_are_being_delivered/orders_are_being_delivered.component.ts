@@ -127,7 +127,7 @@ update_status_orders(id: number,status:number) {
   this.admin.update_order_status(this.id, this.status).subscribe(
     (data) => {
       this.getall_order();
-      this.toastr.success('Xác nhận đơn hàng thành công!');
+      this.toastr.success('Thay đổi trạng thái đơn hàng thành công!');
     },
     (error) => {
       console.log('error', error);

@@ -16,6 +16,7 @@ export class Import_ordersComponent implements OnInit {
   import_order: any;
   title='Nhập kho sản phẩm';
   product:any;
+  supplier:any;
   // categoryId :any;
   id: number;
   // isEdit: boolean = true;
@@ -41,6 +42,7 @@ export class Import_ordersComponent implements OnInit {
   import_order_from: FormGroup = new FormGroup({
     // id: new FormControl(),
     product_id: new FormControl('', Validators.required),
+    supplier_id: new FormControl('', Validators.required),
     quantity: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
   });
@@ -66,6 +68,7 @@ export class Import_ordersComponent implements OnInit {
         });
         // this.import_order = data.import_order;
         this.product = data.product;
+        this.supplier = data.supplier;
         console.log('data',data)
       },
       (error) => {
@@ -102,6 +105,7 @@ export class Import_ordersComponent implements OnInit {
 
       this.import_order_from = new FormGroup({
         product_id: new FormControl(data.import_order.product_id, Validators.required),
+        supplier_id: new FormControl(data.import_order.supplier_id, Validators.required),
         quantity: new FormControl(data.import_order.quantity, Validators.required),
         price: new FormControl(data.import_order.price, Validators.required),
       });

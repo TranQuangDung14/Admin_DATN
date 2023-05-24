@@ -15,6 +15,7 @@ export class Product_addComponent implements OnInit {
   productForm: FormGroup;
   imageFiles: File[] = [];
   category_product :any;
+  brand:any;
   constructor(
     private formBuilder: FormBuilder,
     private admin: ApiService,
@@ -29,6 +30,7 @@ export class Product_addComponent implements OnInit {
       // price: ['', Validators.required],
       tech_specs: [''],
       category_id: [''],
+      brand_id: [''],
       description: [''],
       // image: [null]
     });
@@ -40,6 +42,7 @@ export class Product_addComponent implements OnInit {
     this.subscription = this.admin.get_all_product()
       .subscribe((data: any) => {
         this.category_product = data.category_product;
+        this.brand=data.brand;
       }, error => {
         console.log(error);
 
@@ -52,6 +55,7 @@ export class Product_addComponent implements OnInit {
     formData.append('default_price', this.productForm.value.default_price);
     formData.append('tech_specs', this.productForm.value.tech_specs);
     formData.append('category_id', this.productForm.value.category_id);
+    formData.append('brand_id', this.productForm.value.brand_id);
     formData.append('description', this.productForm.value.description);
 
     if (this.imageFiles && this.imageFiles.length > 0) {

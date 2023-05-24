@@ -19,6 +19,16 @@
               </select>
             </div>
             <div class="col-6 form-group">
+              <h6 for="category_id">Thương hiệu sản phẩm</h6>
+              <select class="form-select" formControlName="brand_id">
+                <option value="" disabled>-- Chọn thương hiệu sản phẩm --</option>
+                <option *ngFor="let item of brand" value="{{ item.id }}">{{ item.name }}</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="row mt-2">
+            <div class="col-12 form-group">
               <label for="name">Tên sản phẩm</label>
               <input type="text" class="form-control" formControlName="name">
             </div>

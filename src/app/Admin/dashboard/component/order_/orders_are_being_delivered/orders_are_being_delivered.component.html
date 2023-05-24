@@ -11,10 +11,10 @@
                   <div class="flex-grow-1 me-2">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"placeholder=" Tìm kiếm đơn hàng">
                   </div>
-                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                  <!-- <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
                   data-bs-target="#modal_add">
                   Thêm mới
-                </button>
+                </button> -->
                 </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
     </div>
   </div>
 </div>
-
+<!-- modal chi tiết -->
 <div class="modal fade" id="model_detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -149,7 +149,7 @@
 
 
 <!-- Modal hủy -->
-<div class="modal fade" id="Modal_cancel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_cancel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -169,7 +169,7 @@
 </div>
 
 <!-- modal hoàn thành -->
-<div class="modal fade" id="Modal_success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_success" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">

@@ -118,23 +118,28 @@ getStatusStyle(status: number): any {
 }
 
 
-// status:number=2;
+
+status:number;
 // id: number;
 // cập nhật trạng thái
-// update_status_orders(id: number) {
-//   this.id = id;
-//   console.log('status', this.status);
-//   this.admin.update_order_status(this.id, this.status).subscribe(
-//     (data) => {
-//       this.getall_order();
-//       this.toastr.success('Xác nhận đơn hàng thành công!');
-//     },
-//     (error) => {
-//       console.log('error', error);
-//       this.toastr.error('Cập nhật thất bại!');
-//     }
-//   );
-// }
+update_status_orders(id: number,status:number) {
+  this.id = id;
+  this.status=status;
+  console.log('status', this.status);
+  this.admin.update_order_status(this.id, this.status).subscribe(
+    (data) => {
+      this.getall_order();
+      this.toastr.success('Phục đơn hàng thành công!');
+    },
+    (error) => {
+      console.log('error', error);
+      this.toastr.error('Cập nhật thất bại!');
+    }
+  );
+}
+openModal(id: number): void {
+  this.id = id; // lưu lại id vào một biến trong component
+}
 order_detail:any;
 order_product:any;
 get_order_id(id:number){
