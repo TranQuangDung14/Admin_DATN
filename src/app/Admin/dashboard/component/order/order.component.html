@@ -85,11 +85,15 @@
       <div class="modal-body">
 
         <div class="row">
-          <div class="col-6">
+          <div class="col-4">
+            <label for="">Mã đơn hàng:</label>
+            <span *ngIf="order_detail"> {{order_detail.code_order}}</span>
+          </div>
+          <div class="col-4">
             <label for="">Tên khách hàng:</label>
             <span *ngIf="order_detail"> {{order_detail.receiver_name}}</span>
           </div>
-          <div class="col-6">
+          <div class="col-4">
             <label for="">Số điện thoại:</label>
             <span *ngIf="order_detail"> {{order_detail.number_phone}}</span>
           </div>

@@ -26,7 +26,7 @@ export class Product_listComponent implements OnInit {
   // POSTS: any;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 5;
+  tableSize: number = 8;
   tableSizes: any = [5, 10, 15, 20];
   //end
   constructor(
@@ -80,7 +80,38 @@ export class Product_listComponent implements OnInit {
       this.title = 'Bạn có chắc chắn muốn xóa?'; // hiển thị thông báo xác nhận
     }
 
+    updateStatus(id: number, status: number) {
+      console.log('id', id);
+      this.admin.update_status_product(id, status)
+        .subscribe(
+          response => {
+            // Find the category with the given id and update its status
+            let cate = this.product.find((c:any) => c.id === id);
+            if (cate) {
+              cate.status = status;
+            }
 
+            // Show the appropriate message
+            if (status === 1) {
+              this.toastr.success('Kích hoạt trạng thái thành công!');
+            } else {
+              this.toastr.success('Ngừng kích hoạt trạng thái thành công!');
+            }
+          },
+          error => {
+            if (status === 1) {
+              this.toastr.error('Kích hoạt trạng thái thất bại!');
+            } else {
+              this.toastr.error('Ngừng kích hoạt trạng thái thất bại!');
+            }
+            console.error(error);
+          }
+        );
+    }
+
+    toggleSwitch(id: number, status: number) {
+      this.updateStatus(id, status === 1 ? 0 : 1); // Đảo ngược trạng thái (1 -> 0, 0 -> 1)
+    }
     //phân trang
     ontableDataChange(event: any) {
       this.page = event;

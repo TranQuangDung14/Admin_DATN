@@ -29,9 +29,25 @@ export class BrandsComponent implements OnInit {
   from_brands: FormGroup = new FormGroup({
     // id: new FormControl(),
     name: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
+    description: new FormControl('',),
   });
+  isInvalidField(fieldName: string) {
+    const fieldControl = this.from_brands.get(fieldName);
+    return fieldControl?.invalid;
+  }
 
+  // validate
+  getErrorMessage(fieldName: string) {
+    const fieldControl = this.from_brands.get(fieldName);
+    if (fieldName === 'name') {
+      if (fieldControl?.hasError('required')) {
+        return 'Tên thương hiệu không được để trống.';
+      }
+    }
+
+    return undefined;
+    // Các thông báo lỗi khác cho các trường khác
+  }
   constructor(
     private admin: ApiService,
     private toastr: ToastrService,
@@ -46,6 +62,17 @@ export class BrandsComponent implements OnInit {
   ngOnInit() {
     this.send_title();
     this.get_all_brands();
+    const successMessage = sessionStorage.getItem('successMessage');
+    if (successMessage) {
+      this.toastr.success(successMessage);
+      sessionStorage.removeItem('successMessage'); // Xóa thông báo thành công từ sessionStorage
+    }
+
+    const errorMessage = sessionStorage.getItem('errorMessage');
+    if (errorMessage) {
+      this.toastr.error(errorMessage);
+      sessionStorage.removeItem('errorMessage'); // Xóa thông báo thất bại từ sessionStorage
+    }
   }
   //all
   get_all_brands() {
@@ -60,19 +87,25 @@ export class BrandsComponent implements OnInit {
     );
   }
 
-
+  submitted = false;
   // thêm mới
   onCreate() {
-    // this.submitted=true;
+    this.submitted=true;
+    // this.submitted = true;
+    if (this.from_brands.invalid) {
+      // alert('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc.');
+      this.toastr.error('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc!');
+      return;
+    }
     this.admin.create_brands(this.from_brands.value).subscribe((data) => {
         // this.from_brands.reset();
-        this.resetForm();
-        this.get_all_brands();
-        this.toastr.success('Thêm mới thành công!', );
+        sessionStorage.setItem('successMessage', 'Thêm mới thành công!'); // Lưu thông báo thành công trong sessionStorage
+        window.location.reload(); // Reload lại trang
 
       },
       (error) => {
-        this.toastr.error('Thêm thất bại!');
+        sessionStorage.setItem('errorMessage', 'Thêm thất bại!'); // Lưu thông báo thất bại trong sessionStorage
+        window.location.reload(); // Reload lại trang
       });
   }
   resetForm() {
@@ -95,16 +128,22 @@ export class BrandsComponent implements OnInit {
   }
 
   onEdit() {
-
+    this.submitted=true;
+    // this.submitted = true;
+    if (this.from_brands.invalid) {
+      // alert('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc.');
+      this.toastr.error('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc!');
+      return;
+    }
     this.admin.update_brands(this.id, this.from_brands.value).subscribe(data => {
-      // this.router.navigate(['/brands']);
-      this.from_brands.reset();
-      // console.log(data);
-      this.get_all_brands();
-      this.toastr.success('Cập nhật thành công!', );
+
+      sessionStorage.setItem('successMessage', 'Cập nhật thành công!'); // Lưu thông báo thành công trong sessionStorage
+      window.location.reload(); // Reload lại trang
+
     },
     (error) => {
-      this.toastr.error('cập nhật thất bại!');
+      sessionStorage.setItem('errorMessage', 'Cập nhật thất bại!'); // Lưu thông báo thất bại trong sessionStorage
+      window.location.reload(); // Reload lại trang
     });
   }
 

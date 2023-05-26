@@ -28,7 +28,7 @@
               <tr>
                 <th class="text-secondary opacity-7">STT</th>
                 <th class="text-secondary opacity-7">Danh mục video</th>
-                <!-- <th class="text-secondary opacity-7">Mô tả</th> -->
+                <th class="text-secondary opacity-7">Trạng thái</th>
                 <th class="text-secondary opacity-7">Thao tác</th>
               </tr>
             </thead>
@@ -37,6 +37,14 @@
                 *ngFor="let item of type_video|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
                 <td  class="ps-4">{{i+1}}</td>
                 <td>{{item.name}}</td>
+                <td>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch{{ item.id }}"
+                      [checked]="item.status === 1" (change)="toggleSwitch(item.id, item.status)">
+                    <label class="form-check-label" for="switch{{ item.id }}">{{ item.status === 1 ? 'Bật' : 'Tắt'
+                      }}</label>
+                  </div>
+                </td>
                 <!-- <td [innerHTML]="item.description" ></td> -->
                 <td>
                   <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"

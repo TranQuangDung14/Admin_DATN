@@ -788,4 +788,73 @@ export class ApiService {
       },
     });
   }
+
+  //banner
+  get_banner(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'banner/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  create_banner(data: any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'banner/', data, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+
+  // update_status_category(id: number, status: number): Observable<any> {
+  //   return this._http.put<any>(this.API_URL + 'category_products/' + id +'/status', status, {
+  //     headers: {
+  //       Authorization: this.code_tokens,
+  //     },
+  //   });
+  // }
+
+  // cập nhật trạng thái
+  update_status_category(id: number, status: number): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'category_products/' + id +'/status', {status: status}, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  update_status_product(id: number, status: number): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'product/' + id +'/status', {status: status}, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  update_status_type_posts(id: number, status: number): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'type_posts/' + id +'/status', {status: status}, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  update_status_posts(id: number, status: number): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'posts/' + id +'/status', {status: status}, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  update_status_type_video(id: number, status: number): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'type_video/' + id +'/status', {status: status}, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  update_status_video(id: number, status: number): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'video/' + id +'/status', {status: status}, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+
 }

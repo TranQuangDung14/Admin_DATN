@@ -36,11 +36,12 @@ export class Product_editComponent implements OnInit {
       default_price: ['', Validators.required],
       // price: ['', Validators..],
       tech_specs: [''],
-      category_id: [''],
-      brand_id: [''],
+      category_id: ['',Validators.required],
+      brand_id: ['',Validators.required],
       description: [''],
       // image: [null]
     });
+
 
     this.get_all_product();
 
@@ -57,6 +58,42 @@ export class Product_editComponent implements OnInit {
     );
   }
 
+  isInvalidField(fieldName: string) {
+    const fieldControl = this.productForm.get(fieldName);
+    return fieldControl?.invalid;
+  }
+
+  // validate
+  getErrorMessage(fieldName: string) {
+    const fieldControl = this.productForm.get(fieldName);
+    if (fieldName === 'name') {
+      if (fieldControl?.hasError('required')) {
+        return 'Tên danh mục không được để trống!';
+      }
+    }
+    if (fieldName === 'default_price') {
+      if (fieldControl?.hasError('required')) {
+        return 'Giá tiền không được phép để trống!';
+      }
+    }
+    // if (fieldName === 'tech_specs') {
+    //   if (fieldControl?.hasError('required')) {
+    //     return 'Thông số không được phép để trống!';
+    //   }
+    // }
+    if (fieldName === 'category_id') {
+      if (fieldControl?.hasError('required')) {
+        return 'Danh mục không được phép để trống!';
+      }
+    }
+    if (fieldName === 'brand_id') {
+      if (fieldControl?.hasError('required')) {
+        return 'Thương hiệu không được phép để trống!';
+      }
+    }
+    return undefined;
+    // Các thông báo lỗi khác cho các trường khác
+  }
   get_all_product() {
     this.subscription = this.admin.get_all_product().subscribe(
       (data: any) => {
@@ -69,8 +106,15 @@ export class Product_editComponent implements OnInit {
     );
   }
 
+  submitted = false;
 
   onSubmit() {
+    this.submitted = true;
+    if (this.productForm.invalid) {
+      // alert('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc.');
+      this.toastr.error('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc!');
+      return;
+    }
     const formData = new FormData();
     formData.append('category_id', this.productForm.value.category_id);
     formData.append('brand_id', this.productForm.value.brand_id);

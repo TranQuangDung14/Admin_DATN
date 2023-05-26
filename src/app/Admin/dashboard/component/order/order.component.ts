@@ -125,7 +125,7 @@ export class OrderComponent implements OnInit {
     this.admin.get_order_id(this.id).subscribe((data) => {
       this.order_detail = data.data;
       this.order_product = data.data.order_details;
-      console.log('ddd', this.order_product);
+      console.log('ddd', this.order_detail);
     });
   }
   openModal(id: number): void {

@@ -15,31 +15,45 @@
           <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-6 form-group">
-                <h6 for="category_id">Danh mục sản phẩm</h6>
+                <h6 for="category_id">Danh mục sản phẩm<span style="color: red;">*</span></h6>
                 <select class="form-select" formControlName="category_id">
                   <option value=""disabled>-- Chọn danh mục sản phẩm--</option>
                   <option *ngFor="let item of category_product" value="{{ item.id }}">{{ item.name_cate }}</option>
                 </select>
+                <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('category_id')">
+                  <p style="font-size: 15px;">--{{ getErrorMessage('category_id') }}--</p>
+                </div>
+
               </div>
               <div class="col-6 form-group">
-                <h6 for="category_id">Thương hiệu sản phẩm</h6>
+                <h6 for="category_id">Thương hiệu sản phẩm<span style="color: red;">*</span></h6>
                 <select class="form-select" formControlName="brand_id">
                   <option value="" disabled>-- Chọn thương hiệu sản phẩm --</option>
                   <option *ngFor="let item of brand" value="{{ item.id }}">{{ item.name }}</option>
                 </select>
+                <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('brand_id')">
+                  <p style="font-size: 15px;">--{{ getErrorMessage('brand_id') }}--</p>
+                </div>
               </div>
+
 
             </div>
             <div class="row mt-2">
               <div class="col-12 form-group">
-                <h6 for="name">Tên sản phẩm</h6>
+                <h6 for="name">Tên sản phẩm<span style="color: red;">*</span></h6>
                 <input type="text" class="form-control" formControlName="name">
+                <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('name')">
+                  <p style="font-size: 15px;">--{{ getErrorMessage('name') }}--</p>
+                </div>
               </div>
             </div>
             <div class="row mt-2">
               <div class="col-6 form-group">
-                <h6 for="default_price">Giá tiền sản phẩm</h6>
+                <h6 for="default_price">Giá tiền sản phẩm<span style="color: red;">*</span></h6>
                 <input type="number" class="form-control" min="0" formControlName="default_price" >
+                <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('default_price')">
+                  <p style="font-size: 15px;">--{{ getErrorMessage('default_price') }}--</p>
+                </div>
               </div>
               <div class="col-6 form-group">
                 <h6 for="image">Ảnh sản phẩm</h6>
@@ -51,7 +65,9 @@
 
             </div>
 
-
+            <!-- <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('default_price')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('default_price') }}--</p>
+            </div> -->
             <div class="form-group mt-3">
               <h6 for="tech_specs">Thông số kỹ thuật</h6>
               <ckeditor formControlName="tech_specs"></ckeditor>

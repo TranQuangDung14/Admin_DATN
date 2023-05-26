@@ -31,7 +31,7 @@
                 <th class="text-secondary opacity-7">link</th>
                 <th class="text-secondary opacity-7">Ảnh demo</th>
                 <th class="text-secondary opacity-7">Mô tả</th>
-                <!-- <th class="text-secondary opacity-7">Mô tả</th> -->
+                <th class="text-secondary opacity-7">trạng thái</th>
                 <th class="text-secondary opacity-7">Thao tác</th>
               </tr>
             </thead>
@@ -47,7 +47,14 @@
                 </td>
                 <!-- <td>{{item.description}}</td> -->
                 <td [innerHTML]="item.description" ></td>
-                <!-- <td>{{item.title}}</td> -->
+                <td>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch{{ item.id }}"
+                      [checked]="item.status === 1" (change)="toggleSwitch(item.id, item.status)">
+                    <label class="form-check-label" for="switch{{ item.id }}">{{ item.status === 1 ? 'Bật' : 'Tắt'
+                      }}</label>
+                  </div>
+                </td>
                 <!-- <td [innerHTML]="item.description" ></td> -->
                 <td>
                   <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"

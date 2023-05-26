@@ -87,12 +87,18 @@
               <input type="text" formControlName="name" autocomplete="off" placeholder=" Nhập tên nhà cung cấp" class="form-control"
                 id="example-input-group">
             </div>
+            <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('name')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('name') }}--</p>
+            </div>
           </div>
           <div class="mb-3">
-            <label for="example-input-group" class="form-label">Email <span style="color: red;">*</span></label>
+            <label for="example-input-group" class="form-label">Email</label>
             <div class="input-group input-group-outline">
               <input type="text" formControlName="email" autocomplete="off" placeholder="email@gmail.com" class="form-control"
                 id="example-input-group">
+            </div>
+            <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('email')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('email') }}--</p>
             </div>
           </div>
           <div class="mb-3">
@@ -101,6 +107,9 @@
               <input type="text" formControlName="adress" autocomplete="off" placeholder="nhập địa chỉ" class="form-control"
                 id="example-input-group">
             </div>
+            <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('adress')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('adress') }}--</p>
+            </div>
           </div>
           <div class="mb-3">
             <label for="example-input-group" class="form-label">Số điện thoại</label>
@@ -108,11 +117,14 @@
               <input type="number" autocomplete="off" min="0"  formControlName="number_phone" placeholder="nhập số điện thoại" class="form-control"
                 id="example-input-group">
             </div>
+            <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('number_phone')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('number_phone') }}--</p>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+          <button type="submit" class="btn btn-primary" >Lưu</button>
         </div>
       </form>
     </div>
@@ -132,42 +144,47 @@
           <div class="mb-3">
             <label for="example-input-group" class="form-label">Tên Nhà cung cấp <span style="color: red;">*</span></label>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="name" placeholder=" Nhập tên nhà cung cấp" class="form-control"
+              <input type="text" formControlName="name" autocomplete="off" placeholder=" Nhập tên nhà cung cấp" class="form-control"
                 id="example-input-group">
+            </div>
+            <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('name')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('name') }}--</p>
             </div>
           </div>
           <div class="mb-3">
-            <label for="example-input-group" class="form-label">Email <span style="color: red;">*</span></label>
+            <label for="example-input-group" class="form-label">Email</label>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="email" placeholder="email@gmail.com" class="form-control"
+              <input type="text" formControlName="email" autocomplete="off" placeholder="email@gmail.com" class="form-control"
                 id="example-input-group">
+            </div>
+            <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('email')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('email') }}--</p>
             </div>
           </div>
           <div class="mb-3">
             <label for="example-input-group" class="form-label">Địa chỉ<span style="color: red;">*</span></label>
             <div class="input-group input-group-outline">
-              <input type="text" formControlName="adress" placeholder="nhập địa chỉ" class="form-control"
+              <input type="text" formControlName="adress" autocomplete="off" placeholder="nhập địa chỉ" class="form-control"
                 id="example-input-group">
+            </div>
+            <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('adress')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('adress') }}--</p>
             </div>
           </div>
           <div class="mb-3">
             <label for="example-input-group" class="form-label">Số điện thoại</label>
             <div class="input-group input-group-outline">
-              <input type="number" formControlName="number_phone" min="0" placeholder="nhập số điện thoại" class="form-control"
+              <input type="number" autocomplete="off" min="0"  formControlName="number_phone" placeholder="nhập số điện thoại" class="form-control"
                 id="example-input-group">
+            </div>
+            <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('number_phone')">
+              <p style="font-size: 15px;">--{{ getErrorMessage('number_phone') }}--</p>
             </div>
           </div>
-          <!-- <div class="mb-3">
-            <label for="example-input-group" class="form-label">Loại hàng hóa</label>
-            <div class="input-group input-group-outline">
-              <input type="text" formControlName="sectors" placeholder="Nhập loại hàng cung cấp" class="form-control"
-                id="example-input-group">
-            </div>
-          </div> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="resetForm()" data-bs-dismiss="modal">Hủy</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Cập nhật</button>
+          <button type="submit" class="btn btn-primary">Cập nhật</button>
         </div>
       </form>
     </div>

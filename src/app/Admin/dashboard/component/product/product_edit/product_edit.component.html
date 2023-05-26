@@ -10,7 +10,7 @@
       </div>
       <div class="card-body">
         <form method="PUT"  [formGroup]="productForm" (ngSubmit)="onSubmit()">
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-6 form-group">
               <label for="category_id">Danh mục sản phẩm</label>
               <select class="form-select" formControlName="category_id">
@@ -43,18 +43,63 @@
               <input type="file" class="form-control" (change)="onFileSelected($event)" multiple>
             </div>
             <div class="row">
-              <!-- <div class="col"> -->
                 <div class="col-2 mt-2" *ngFor="let image of product?.images">
                   <img src="http://127.0.0.1:8000/storage/image/product/{{ image.image}}" style="width: 150px;" alt="" >
                   <button (click)="deleteImage(image.id)">X</button>
                 </div>
                 <div class=" mt-2"> <span id="preview"></span></div>
-              <!-- </div> -->
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-6 form-group">
+              <h6 for="category_id">Danh mục sản phẩm<span style="color: red;">*</span></h6>
+              <select class="form-select" formControlName="category_id">
+                <option value=""disabled>-- Chọn danh mục sản phẩm--</option>
+                <option *ngFor="let item of category_product" value="{{ item.id }}">{{ item.name_cate }}</option>
+              </select>
+              <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('category_id')">
+                <p style="font-size: 15px;">--{{ getErrorMessage('category_id') }}--</p>
+              </div>
+
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="category_id">Thương hiệu sản phẩm<span style="color: red;">*</span></h6>
+              <select class="form-select" formControlName="brand_id">
+                <option value="" disabled>-- Chọn thương hiệu sản phẩm --</option>
+                <option *ngFor="let item of brand" value="{{ item.id }}">{{ item.name }}</option>
+              </select>
+              <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('brand_id')">
+                <p style="font-size: 15px;">--{{ getErrorMessage('brand_id') }}--</p>
+              </div>
             </div>
 
-            <!-- <div class="mt-2" id="preview" *ngFor="let image of images">
-              <img src="http://127.0.0.1:8000/storage/image/product/{{ image.image }}" style="width: 150px;" alt="" >
-            </div> -->
+
+          </div>
+          <div class="row mt-2">
+            <div class="col-12 form-group">
+              <h6 for="name">Tên sản phẩm<span style="color: red;">*</span></h6>
+              <input type="text" class="form-control" formControlName="name">
+              <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('name')">
+                <p style="font-size: 15px;">--{{ getErrorMessage('name') }}--</p>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 form-group">
+              <h6 for="default_price">Giá tiền sản phẩm<span style="color: red;">*</span></h6>
+              <input type="number" class="form-control" min="0" formControlName="default_price" >
+              <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('default_price')">
+                <p style="font-size: 15px;">--{{ getErrorMessage('default_price') }}--</p>
+              </div>
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="image">Ảnh sản phẩm</h6>
+              <!-- <input type="file" class="form-control" (change)="onFileSelected($event)" multiple> -->
+              <input type="file" class="form-control" (change)="onFileSelected($event)" multiple>
+          </div>
+          <div class="mt-2" id="preview"></div>
+
+
           </div>
           <div class="form-group mt-3">
             <label for="tech_specs">Thông số kỹ thuật</label>

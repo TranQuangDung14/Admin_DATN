@@ -120,32 +120,6 @@ export class PostComponent implements OnInit {
   }
 
   previewImage: any ='';
-  // from_post_edit: FormGroup = new FormGroup({
-  //   // id: new FormControl(),
-  //   type_post_id: new FormControl('', Validators.required),
-  //   staff_id: new FormControl(''),
-  //   title: new FormControl('', Validators.required),
-  //   hashtag: new FormControl('', Validators.required),
-  //   content: new FormControl(''),
-  //   image: new FormControl('', Validators.required),
-  // });
-
-  // edit
-  // tạm thời sau fix
-  // onImagePicked(event: Event): void {
-  //   const file = (event.target as HTMLInputElement).files?.[0];
-  //   this.from_post_edit.patchValue({ image: file });
-  //   // this.from_post_edit.value.image.updateValueAndValidity();
-
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.previewImage = reader.result;
-  //   };
-  //   if (file) {
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
-
   get_id(id: number) {
     //  this.id = this._router.snapshot.params['id'];
     this.id = id;
@@ -210,6 +184,38 @@ export class PostComponent implements OnInit {
   openModal(id: number): void {
     this.id = id; // lưu lại id vào một biến trong component
     this.title = 'Bạn có chắc chắn muốn xóa?'; // hiển thị thông báo xác nhận
+  }
+
+  updateStatus(id: number, status: number) {
+    console.log('id', id);
+    this.admin.update_status_posts(id, status)
+      .subscribe(
+        response => {
+          // Find the category with the given id and update its status
+          let cate = this.post.find((c:any) => c.id === id);
+          if (cate) {
+            cate.status = status;
+          }
+          // Show the appropriate message
+          if (status === 1) {
+            this.toastr.success('Kích hoạt trạng thái thành công!');
+          } else {
+            this.toastr.success('Ngừng kích hoạt trạng thái thành công!');
+          }
+        },
+        error => {
+          if (status === 1) {
+            this.toastr.error('Kích hoạt trạng thái thất bại!');
+          } else {
+            this.toastr.error('Ngừng kích hoạt trạng thái thất bại!');
+          }
+          console.error(error);
+        }
+      );
+  }
+
+  toggleSwitch(id: number, status: number) {
+    this.updateStatus(id, status === 1 ? 0 : 1); // Đảo ngược trạng thái (1 -> 0, 0 -> 1)
   }
   //phân trang
   ontableDataChange(event: any) {

@@ -47,10 +47,53 @@ export class Import_ordersComponent implements OnInit {
     price: new FormControl('', Validators.required),
   });
 
+  isInvalidField(fieldName: string) {
+    const fieldControl = this.import_order_from.get(fieldName);
+    return fieldControl?.invalid;
+  }
+
+  // validate
+  getErrorMessage(fieldName: string) {
+    const fieldControl = this.import_order_from.get(fieldName);
+    if (fieldName === 'supplier_id') {
+      if (fieldControl?.hasError('required')) {
+        return 'Nhà cung cấp chưa chọn.';
+      }
+    }
+    if (fieldName === 'product_id') {
+      if (fieldControl?.hasError('required')) {
+        return 'Sản phẩm chưa chọn.';
+      }
+    }
+    if (fieldName === 'quantity') {
+      if (fieldControl?.hasError('required')) {
+        return 'Số lượng không được để trống.';
+      }
+    }
+    if (fieldName === 'price') {
+      if (fieldControl?.hasError('required')) {
+        return 'Giá nhập không được để trống.';
+      }
+    }
+
+    return undefined;
+    // Các thông báo lỗi khác cho các trường khác
+  }
 
   ngOnInit() {
     this.send_title();
     this.get_all_import_order();
+    const successMessage = sessionStorage.getItem('successMessage');
+    if (successMessage) {
+      this.toastr.success(successMessage);
+      sessionStorage.removeItem('successMessage'); // Xóa thông báo thành công từ sessionStorage
+    }
+
+    const errorMessage = sessionStorage.getItem('errorMessage');
+    if (errorMessage) {
+      this.toastr.error(errorMessage);
+      sessionStorage.removeItem('errorMessage'); // Xóa thông báo thất bại từ sessionStorage
+    }
   }
   // gửi title đi
   send_title() {
@@ -76,18 +119,24 @@ export class Import_ordersComponent implements OnInit {
       }
     );
   }
+  submitted = false;
   onCreate() {
-    // this.submitted=true;
+   // this.submitted=true;
+   this.submitted = true;
+   if (this.import_order_from.invalid) {
+     // alert('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc.');
+     this.toastr.error('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc!');
+     return;
+   }
     this.admin.create_import_order(this.import_order_from.value).subscribe((data) => {
-        this.import_order_from.reset();
-        // console.log(data);
-        this.get_all_import_order();
-        this.toastr.success('Thêm mới thành công!', );
+      sessionStorage.setItem('successMessage', 'Thêm mới thành công!'); // Lưu thông báo thành công trong sessionStorage
+      window.location.reload(); // Reload lại trang
 
         // window.location.reload();
       },
       (error) => {
-        this.toastr.error('Thêm thất bại!');
+        sessionStorage.setItem('errorMessage', 'Thêm thất bại!'); // Lưu thông báo thất bại trong sessionStorage
+        window.location.reload(); // Reload lại trang
       });
   }
   resetForm() {
@@ -114,16 +163,19 @@ export class Import_ordersComponent implements OnInit {
   }
 
   onEdit() {
-
+    this.submitted = true;
+    if (this.import_order_from.invalid) {
+      // alert('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc.');
+      this.toastr.error('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc!');
+      return;
+    }
     this.admin.update_import_order(this.id, this.import_order_from.value).subscribe(data => {
-      this.router.navigate(['/Import-orders']);
-      this.import_order_from.reset();
-      // console.log(data);
-      this.get_all_import_order();
-      this.toastr.success('Cập nhật thành công!', );
+      sessionStorage.setItem('successMessage', 'Cập nhật thành công!'); // Lưu thông báo thành công trong sessionStorage
+      window.location.reload(); // Reload lại trang
     },
     (error) => {
-      this.toastr.error('cập nhật thất bại!');
+      sessionStorage.setItem('errorMessage', 'Cập nhật thất bại!'); // Lưu thông báo thất bại trong sessionStorage
+      window.location.reload(); // Reload lại trang
     });
   }
 

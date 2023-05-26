@@ -89,23 +89,6 @@ onCreate() {
 resetForm() {
   this.from_input.reset();
 }
-
-// get_id(id: number)
-// {
-//     //  this.id = this._router.snapshot.params['id'];
-//     this.id =id;
-//   this.admin.get_category(id).subscribe(data => {
-//     // console.log('1',data)
-//     this.from_input = new FormGroup({
-//       name: new FormControl(data.name,Validators.required),
-//       description: new FormControl(data.description),
-//     });
-//     // this.isEdit = true; // Xác định là chức năng sửa
-//   })
-// }
-
-
-
 onDelete(id: number) {
   this.admin.delete_voucher(id).subscribe((data) => {
     this.get_all_voucher();

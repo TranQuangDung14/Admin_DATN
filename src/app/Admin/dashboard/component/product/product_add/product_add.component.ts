@@ -28,14 +28,52 @@ export class Product_addComponent implements OnInit {
       name: ['', Validators.required],
       default_price: ['', Validators.required],
       // price: ['', Validators.required],
-      tech_specs: [''],
-      category_id: [''],
-      brand_id: [''],
+      tech_specs: ['',Validators.required],
+      category_id: ['',Validators.required],
+      brand_id: ['',Validators.required],
       description: [''],
       // image: [null]
     });
 
     this.get_all_product();
+  }
+
+
+  isInvalidField(fieldName: string) {
+    const fieldControl = this.productForm.get(fieldName);
+    return fieldControl?.invalid;
+  }
+
+  // validate
+  getErrorMessage(fieldName: string) {
+    const fieldControl = this.productForm.get(fieldName);
+    if (fieldName === 'name') {
+      if (fieldControl?.hasError('required')) {
+        return 'Tên danh mục không được để trống!';
+      }
+    }
+    if (fieldName === 'default_price') {
+      if (fieldControl?.hasError('required')) {
+        return 'Giá tiền không được phép để trống!';
+      }
+    }
+    // if (fieldName === 'tech_specs') {
+    //   if (fieldControl?.hasError('required')) {
+    //     return 'Thông số không được phép để trống!';
+    //   }
+    // }
+    if (fieldName === 'category_id') {
+      if (fieldControl?.hasError('required')) {
+        return 'Danh mục không được phép để trống!';
+      }
+    }
+    if (fieldName === 'brand_id') {
+      if (fieldControl?.hasError('required')) {
+        return 'Thương hiệu không được phép để trống!';
+      }
+    }
+    return undefined;
+    // Các thông báo lỗi khác cho các trường khác
   }
 
   get_all_product() {
@@ -49,7 +87,14 @@ export class Product_addComponent implements OnInit {
       }
       )
   }
+  submitted = false;
   onSubmit() {
+    this.submitted = true;
+    if (this.productForm.invalid) {
+      // alert('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc.');
+      this.toastr.error('Vui lòng điền đầy đủ thông tin và kiểm tra lại các trường bắt buộc!');
+      return;
+    }
     const formData = new FormData();
     formData.append('name', this.productForm.value.name);
     formData.append('default_price', this.productForm.value.default_price);
