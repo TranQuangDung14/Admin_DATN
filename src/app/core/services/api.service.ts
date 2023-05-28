@@ -780,14 +780,6 @@ export class ApiService {
     });
   }
 
-// thống kê
-  get_dashboard(): Observable<any> {
-    return this._http.get<any>(this.API_URL + 'dashboard/', {
-      headers: {
-        Authorization: this.code_tokens,
-      },
-    });
-  }
 
   //banner
   get_banner(): Observable<any> {
@@ -851,6 +843,36 @@ export class ApiService {
   }
   update_status_video(id: number, status: number): Observable<any> {
     return this._http.put<any>(this.API_URL + 'video/' + id +'/status', {status: status}, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  // thống kê
+  // doanh thu
+  get_dashboard(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'dashboard/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  get_dashboard_daily(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'daily/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  get_dashboard_monthly(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'monthly/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  get_dashboard_yearly(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'yearly/', {
       headers: {
         Authorization: this.code_tokens,
       },

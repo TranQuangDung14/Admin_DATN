@@ -43,6 +43,7 @@ import { Order_successComponent } from './dashboard/component/order_/order_succe
 import { Orders_are_being_deliveredComponent } from './dashboard/component/order_/orders_are_being_delivered/orders_are_being_delivered.component';
 import { Export_ordersComponent } from './dashboard/component/warehouse/export_orders/export_orders.component';
 import { BannerComponent } from './dashboard/component/Web_user/banner/banner.component';
+import { NgChartsModule } from 'ng2-charts';
 
 const router_home:Routes=[
   {
@@ -244,6 +245,8 @@ const router_home:Routes=[
     MatButtonModule,
     MatSnackBarModule,
     FormsModule,
+    NgChartsModule,
+    // ChartsModule
     // NgxPaginationModule,
     RouterModule.forChild(router_home)
   ],

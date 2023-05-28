@@ -1,6 +1,49 @@
   <!-- End Navbar -->
 
     <div class="row">
+      <!-- <canvas id="lineChart"></canvas> -->
+      <!-- <canvas #lineChart></canvas> -->
+      <div class="row mb-5">
+        <div class="col-6">
+
+          <canvas #revenueChart></canvas>
+        </div>
+        <div class="col-6">
+
+          <canvas #lineChart></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+
+          <canvas #stackedChart></canvas>
+        </div>
+        <div class="col-6">
+          <canvas #barChart></canvas>
+          <!-- <canvas id="barChart"></canvas> -->
+
+          <!-- <canvas #test></canvas> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <canvas #test></canvas>
+        </div>
+      </div>
+      <!-- <div style="display: block;">
+        <canvas baseChart
+          [data]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [legend]="lineChartLegend"
+          [type]="lineChartType">
+        </canvas>
+      </div> -->
+
+
+
+
+
       <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
           <div class="card-header p-3 pt-2">
@@ -9,12 +52,12 @@
             </div>
             <div class="text-end pt-1">
               <p class="text-sm mb-0 text-capitalize">Doanh thu</p>
-              <h4 class="mb-0">$53k</h4>
+              <h4 class="mb-0">{{ revenu |currency:'VND' }}</h4>
             </div>
           </div>
           <hr class="dark horizontal my-0">
           <div class="card-footer p-3">
-            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
+            <!-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p> -->
           </div>
         </div>
       </div>
@@ -31,7 +74,7 @@
           </div>
           <hr class="dark horizontal my-0">
           <div class="card-footer p-3">
-            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
+            <!-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p> -->
           </div>
         </div>
       </div>
@@ -49,7 +92,7 @@
           </div>
           <hr class="dark horizontal my-0">
           <div class="card-footer p-3">
-            <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+            <!-- <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p> -->
           </div>
         </div>
       </div>
@@ -66,7 +109,7 @@
           </div>
           <hr class="dark horizontal my-0">
           <div class="card-footer p-3">
-            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+            <!-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p> -->
           </div>
         </div>
       </div>

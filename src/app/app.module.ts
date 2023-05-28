@@ -13,7 +13,8 @@ import { CategoryComponent } from './Admin/dashboard/component/category/category
 import { CKEditorModule } from 'ckeditor4-angular';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 // import { CKEditorModule } from 'ckeditor4-angular';
-
+import { NgChartsModule } from 'ng2-charts';
+// import { ChartsModule } from 'ng2-charts/ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,9 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
     ReactiveFormsModule,
     CKEditorModule,
     CurrencyPipe,
+    NgChartsModule,
+    // ChartsModule
+    // ChartModule
     // BrowserAnimationsModule,
     // CommonModule
     // SharedModule,
