@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
 
     this.admin.login(this.form.value).subscribe(
       (data) => {
+        this.toastr.success('Đăng nhập thành công!', 'Tốt');
         this.router.navigate(['/dashboard']).then(() => {
           // đăng nhập xong load lại trang
           window.location.reload();
-          this.toastr.success('Đăng nhập thành công!', 'Tốt');
         });
       },
       (error) => {

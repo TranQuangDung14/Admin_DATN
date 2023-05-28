@@ -1,9 +1,81 @@
   <!-- End Navbar -->
 
     <div class="row">
+
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+              <i class="material-icons opacity-10">money</i>
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Doanh thu</p>
+              <h4 class="mb-0" style="color: red;">{{ revenu |currency:'VND' }}</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer p-3">
+            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ growth_revenue }}% </span>than last week</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Tổng khách hàng</p>
+              <h4 class="mb-0" style="color: chocolate;">{{ customer }}</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer p-3">
+            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ growth_customer}}% </span>than last month</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+              <!-- <i class="material-icons opacity-10">person</i> -->
+              <i class="material-icons opacity-10">shopping_cart</i>
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">tổng đơn hàng</p>
+              <h4 class="mb-0" style="color: yellowgreen;">{{ order }}</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer p-3">
+            <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">{{ growth}}% </span>So với tháng trước</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+              <i class="material-icons opacity-10">weekend</i>
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Tổng sản phẩm</p>
+              <h4 class="mb-0" style="color: blue;">{{ product }}</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer p-3">
+            <!-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ growth_product | number: '1.2-2'}}% </span>than yesterday</p> -->
+            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ growth_product }}% </span>than yesterday</p>
+          </div>
+        </div>
+      </div>
+    </div>
       <!-- <canvas id="lineChart"></canvas> -->
       <!-- <canvas #lineChart></canvas> -->
-      <div class="row mb-5">
+      <!-- <div class="row mb-5">
         <div class="col-6">
 
           <canvas #revenueChart></canvas>
@@ -12,24 +84,36 @@
 
           <canvas #lineChart></canvas>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
+      </div> -->
+      <div class="row mb-5 mt-3">
 
-          <canvas #stackedChart></canvas>
+        <div class="col-5">
+          <canvas #pieChart></canvas>
+           <!-- <canvas #barChart_all></canvas> -->
+           <h5 class="mt-4" style="text-align: center;">Thống kê đơn hàng</h5>
+          </div>
+          <div class="col-7">
+            <canvas #barChart></canvas>
+            <h5 class="mt-4" style="text-align: center;">Doanh thu theo ngày</h5>
+          </div>
+
+      </div>
+      <div class="row mb-5">
+        <div class="col-6">
+          <canvas #barChart_month></canvas>
+          <h5 class="mt-4" style="text-align: center;">Doanh thu theo tháng</h5>
         </div>
         <div class="col-6">
-          <canvas #barChart></canvas>
-          <!-- <canvas id="barChart"></canvas> -->
-
-          <!-- <canvas #test></canvas> -->
+          <canvas #barChart_year></canvas>
+          <h5 class="mt-4" style="text-align: center;">Doanh thu theo năm</h5>
         </div>
       </div>
-      <div class="row">
+
+      <!-- <div class="row">
         <div class="col-6">
           <canvas #test></canvas>
         </div>
-      </div>
+      </div> -->
       <!-- <div style="display: block;">
         <canvas baseChart
           [data]="lineChartData"
@@ -44,76 +128,6 @@
 
 
 
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card">
-          <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-              <i class="material-icons opacity-10">money</i>
-            </div>
-            <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">Doanh thu</p>
-              <h4 class="mb-0">{{ revenu |currency:'VND' }}</h4>
-            </div>
-          </div>
-          <hr class="dark horizontal my-0">
-          <div class="card-footer p-3">
-            <!-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p> -->
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card">
-          <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">Tổng khách hàng</p>
-              <h4 class="mb-0">{{ customer }}</h4>
-            </div>
-          </div>
-          <hr class="dark horizontal my-0">
-          <div class="card-footer p-3">
-            <!-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p> -->
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card">
-          <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-              <!-- <i class="material-icons opacity-10">person</i> -->
-              <i class="material-icons opacity-10">shopping_cart</i>
-            </div>
-            <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">tổng đơn hàng</p>
-              <h4 class="mb-0">{{ order }}</h4>
-            </div>
-          </div>
-          <hr class="dark horizontal my-0">
-          <div class="card-footer p-3">
-            <!-- <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p> -->
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6">
-        <div class="card">
-          <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-              <i class="material-icons opacity-10">weekend</i>
-            </div>
-            <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">Tổng sản phẩm</p>
-              <h4 class="mb-0">{{ product }}</h4>
-            </div>
-          </div>
-          <hr class="dark horizontal my-0">
-          <div class="card-footer p-3">
-            <!-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p> -->
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- <div class="row mt-4">
       <div class="col-lg-4 col-md-6 mt-4 mb-4">
         <div class="card z-index-2 ">
@@ -176,7 +190,7 @@
         </div>
       </div>
     </div> -->
-    <div class="row mt-4 mb-4">
+    <!-- <div class="row mt-4 mb-4">
       <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
         <div class="card">
           <div class="card-header pb-0">
@@ -520,7 +534,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <footer class="footer py-4  ">
 
     </footer> -->

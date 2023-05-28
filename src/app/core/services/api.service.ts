@@ -878,5 +878,45 @@ export class ApiService {
       },
     });
   }
+  // thống kê đơn hàng
+  get_dashboard_order_statistics(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'order_statistics/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  // thống kê tăng trưởng doanh số đơn hàng
+  get_dashboard_order_growth(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'order_growth/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  // thống kê tăng trưởng doanh số khách hàng
+  get_dashboard_customer_growth(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'customer_growth/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  // thống kê tăng trưởng doanh số khách hàng
+  get_dashboard_product_growth(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'product_growth/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  // thống kê tăng trưởng doanh số khách hàng
+  get_dashboard_revenue_growth(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'revenue_growth/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
 
 }
