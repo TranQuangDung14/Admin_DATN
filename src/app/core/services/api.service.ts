@@ -796,7 +796,27 @@ export class ApiService {
       },
     });
   }
-
+  get_banner_id(id: number): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'banner/' + id, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  update_banner(id: number, data: any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'banner/' + id, data, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  delete_banner(id: number): Observable<any> {
+    return this._http.delete<any>(this.API_URL + 'banner/' + id, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
   // update_status_category(id: number, status: number): Observable<any> {
   //   return this._http.put<any>(this.API_URL + 'category_products/' + id +'/status', status, {
   //     headers: {
@@ -919,4 +939,40 @@ export class ApiService {
     });
   }
 
+   //store_information
+   get_all_store_information(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'store_information/', {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  create_store_information(data: any): Observable<any> {
+    return this._http.post<any>(this.API_URL + 'store_information/', data, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  get_store_information(id: number): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'store_information/' + id, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  update_store_information(id: number, data: any): Observable<any> {
+    return this._http.put<any>(this.API_URL + 'store_information/' + id, data, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
+  delete_store_information(id: number): Observable<any> {
+    return this._http.delete<any>(this.API_URL + 'store_information/' + id, {
+      headers: {
+        Authorization: this.code_tokens,
+      },
+    });
+  }
 }

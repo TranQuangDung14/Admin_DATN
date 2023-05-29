@@ -44,6 +44,7 @@ import { Orders_are_being_deliveredComponent } from './dashboard/component/order
 import { Export_ordersComponent } from './dashboard/component/warehouse/export_orders/export_orders.component';
 import { BannerComponent } from './dashboard/component/Web_user/banner/banner.component';
 import { NgChartsModule } from 'ng2-charts';
+import { Store_informationComponent } from './dashboard/component/Web_user/store_information/store_information.component';
 
 const router_home:Routes=[
   {
@@ -176,6 +177,11 @@ const router_home:Routes=[
       component:BannerComponent,
       canActivate: [AuthGuardGuard],
     },
+    {
+      path:"store_information",
+      component:Store_informationComponent,
+      canActivate: [AuthGuardGuard],
+    },
 
     // {
     //   path:"chi-tiet-san-pham/:id",
@@ -226,6 +232,7 @@ const router_home:Routes=[
     Export_ordersComponent,
     Orders_are_being_deliveredComponent,
     BannerComponent,
+    Store_informationComponent,
 
 
   ],
