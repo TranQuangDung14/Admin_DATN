@@ -56,6 +56,7 @@ export class BannerComponent implements OnInit {
   form: FormGroup = new FormGroup({
     // id: new FormControl(),
     ordinal: new FormControl(''),
+    image: new FormControl(null),
   });
 
   getbannerText(ordinal: number): string {
