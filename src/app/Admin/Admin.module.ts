@@ -45,6 +45,7 @@ import { Export_ordersComponent } from './dashboard/component/warehouse/export_o
 import { BannerComponent } from './dashboard/component/Web_user/banner/banner.component';
 import { NgChartsModule } from 'ng2-charts';
 import { Store_informationComponent } from './dashboard/component/Web_user/store_information/store_information.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const router_home:Routes=[
   {
@@ -253,6 +254,7 @@ const router_home:Routes=[
     MatSnackBarModule,
     FormsModule,
     NgChartsModule,
+    MatProgressSpinnerModule,
     // ChartsModule
     // NgxPaginationModule,
     RouterModule.forChild(router_home)

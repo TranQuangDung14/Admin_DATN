@@ -29,7 +29,7 @@ export class BannerComponent implements OnInit {
   // POSTS: any;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 5;
+  tableSize: number = 10;
   tableSizes: any = [5, 10, 15, 20];
   //end
   constructor(
@@ -69,6 +69,16 @@ export class BannerComponent implements OnInit {
         return 'slider qc phải';
       case 4:
         return 'logo';
+      case 5:
+        return 'Laptop Gaming';
+      case 6:
+        return 'Bàn phím Gaming';
+      case 7:
+        return 'Màn hình Gaming';
+      case 8:
+        return 'PC Gaming';
+      case 9:
+        return 'Các phụ kiện máy tính';
       default:
         return '';
     }

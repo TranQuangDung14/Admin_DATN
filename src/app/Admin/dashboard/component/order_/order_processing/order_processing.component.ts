@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/core/services/api.service';
 import { ComponentService } from 'src/app/core/services/component.service';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { delay } from 'rxjs';
 @Component({
   selector: 'app-order_processing',
   templateUrl: './order_processing.component.html',
@@ -38,6 +39,7 @@ export class Order_processingComponent implements OnInit {
    private router: Router,
    private _router: ActivatedRoute
  ) {}
+ isLoading: boolean = false;
 
  ngOnInit() {
   this.getall_order();
@@ -125,15 +127,19 @@ status:number;
 // id: number;
 // cập nhật trạng thái
 update_status_orders(id: number,status:number) {
+  this.isLoading = true;
   this.id = id;
   this.status=status;
   console.log('status', this.status);
-  this.admin.update_order_status(this.id, this.status).subscribe(
+  this.admin.update_order_status(this.id, this.status).pipe(
+    delay(1000)).subscribe(
     (data) => {
+      this.isLoading = false;
       this.getall_order();
       this.toastr.success('Thay đổi trạng thái đơn hàng thành công!');
     },
     (error) => {
+      this.isLoading = false;
       console.log('error', error);
       this.toastr.error('Cập nhật thất bại!');
     }
